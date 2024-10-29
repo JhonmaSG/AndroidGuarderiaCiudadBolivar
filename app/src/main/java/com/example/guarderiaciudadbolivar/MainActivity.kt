@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.inscripciones -> {
                     // Reemplazar el fragmento con el menú de comidas
                     supportFragmentManager.commit {
-                        replace<menu_comidas_fragment>(R.id.fragment_conteiner)
+                        replace<menu_inscripciones_fragment>(R.id.fragment_conteiner)
                         setReorderingAllowed(true)
                         addToBackStack("replacement")
                     }
@@ -119,7 +119,7 @@ class MainActivity : AppCompatActivity() {
                         R.id.menu_comidas -> {
                             // Reemplazar el fragmento con el fragmento de pagos
                             supportFragmentManager.commit {
-                                replace<pagos_fragment>(R.id.fragment_conteiner)
+                                replace<menu_comidas_fragment>(R.id.fragment_conteiner)
                                 setReorderingAllowed(true)
                                 addToBackStack("replacement")
                             }
@@ -127,7 +127,7 @@ class MainActivity : AppCompatActivity() {
                         R.id.historial -> {
                             // Reemplazar el fragmento con el menú de comidas
                             supportFragmentManager.commit {
-                                replace<menu_comidas_fragment>(R.id.fragment_conteiner)
+                                replace<historial_fragment>(R.id.fragment_conteiner)
                                 setReorderingAllowed(true)
                                 addToBackStack("replacement")
                             }
@@ -135,7 +135,7 @@ class MainActivity : AppCompatActivity() {
                         R.id.creditos -> {
                             // Reemplazar el fragmento con el menú principal
                             supportFragmentManager.commit {
-                                replace<menu_principal_fragment>(R.id.fragment_conteiner)
+                                replace<fragment_creditos>(R.id.fragment_conteiner)
                                 setReorderingAllowed(true)
                                 addToBackStack("replacement")
                             }

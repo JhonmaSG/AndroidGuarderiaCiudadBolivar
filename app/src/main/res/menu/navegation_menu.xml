@@ -4,18 +4,18 @@
     <item
         android:id="@+id/menu_principal"
         android:title="Principal"
-        android:icon="@drawable/baseline_person_add_alt_1_24"/>
+        android:icon="@drawable/hogar"/>
     <item
         android:id="@+id/inscripciones"
-        android:icon="@drawable/baseline_person_remove_24"
+        android:icon="@drawable/baseline_child_care_24"
         android:title="Inscripciones" />
     <item
         android:id="@+id/pagos"
-        android:icon="@drawable/baseline_restaurant_menu_24"
+        android:icon="@drawable/baseline_payments_24"
         android:title="Pagos" />
     <item
         android:id="@+id/item_desplegable"
-        android:icon="@drawable/baseline_child_friendly_24"
+        android:icon="@drawable/baseline_menu_24"
         android:title="Mas..." />
 
 </menu>
