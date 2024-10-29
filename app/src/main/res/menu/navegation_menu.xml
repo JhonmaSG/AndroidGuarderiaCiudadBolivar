@@ -2,21 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/item1"
-        android:icon="@drawable/baseline_person_add_alt_1_24"
-        android:title="Menu1" />
+        android:id="@+id/menu_principal"
+        android:title="Principal"
+        android:icon="@drawable/baseline_person_add_alt_1_24"/>
     <item
-        android:id="@+id/item2"
+        android:id="@+id/inscripciones"
         android:icon="@drawable/baseline_person_remove_24"
-        android:title="Menu2" />
+        android:title="Inscripciones" />
     <item
-        android:id="@+id/item3"
+        android:id="@+id/pagos"
         android:icon="@drawable/baseline_restaurant_menu_24"
-        android:title="Menu3" />
+        android:title="Pagos" />
     <item
         android:id="@+id/item_desplegable"
         android:icon="@drawable/baseline_child_friendly_24"
-        android:title="Opciones"
-        />
+        android:title="Mas..." />
 
 </menu>

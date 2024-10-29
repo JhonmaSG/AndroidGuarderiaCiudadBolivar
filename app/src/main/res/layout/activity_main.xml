@@ -18,16 +18,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navMenu"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="72dp"
         android:layout_gravity="bottom"
         android:background="@drawable/rounded_nav_background"
+        android:paddingTop="8dp"
+        app:itemBackground="@drawable/menu_item_background"
         app:itemIconTint="@color/black"
-        app:menu="@menu/navegation_menu"
-        android:paddingTop="8dp" >
+        app:menu="@menu/navegation_menu">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
