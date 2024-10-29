@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_principal"
+        android:title="Principal"
+        android:icon="@drawable/hogar"/>
+    <item
+        android:id="@+id/inscripciones"
+        android:icon="@drawable/baseline_child_care_24"
+        android:title="Inscripciones" />
+    <item
+        android:id="@+id/pagos"
+        android:icon="@drawable/baseline_payments_24"
+        android:title="Pagos" />
+    <item
+        android:id="@+id/item_desplegable"
+        android:icon="@drawable/baseline_menu_24"
+        android:title="Mas..." />
+
+</menu>
