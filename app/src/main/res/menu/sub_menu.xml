@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <item
+        android:id="@+id/menu_comidas"
+        android:title="Menu Comidas"
+        android:icon="@drawable/baseline_restaurant_menu_24"/>
+    <item
+        android:id="@+id/historial"
+        android:title="Historial"
+        android:icon="@drawable/baseline_menu_book_24"/>
+    <item
+        android:id="@+id/creditos"
+        android:title="Creditos"
+        android:icon="@drawable/clientela"/>
+</menu>
