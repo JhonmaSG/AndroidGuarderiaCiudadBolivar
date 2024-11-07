@@ -55,10 +55,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="12dp"
-                        android:hint="Digite Correo Electrónico">
+                        android:hint="Digite Usuario">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etEmailProfesor"
+                            android:id="@+id/etUserProfesor"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="casual"

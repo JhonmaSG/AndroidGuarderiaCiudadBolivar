@@ -45,6 +45,8 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.5.5")
     implementation ("com.google.android.material:material:1.6.1")
     implementation("androidx.appcompat:appcompat:1.5.1")
+    implementation("com.android.volley:volley:1.2.1")
+    implementation(libs.volley)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
