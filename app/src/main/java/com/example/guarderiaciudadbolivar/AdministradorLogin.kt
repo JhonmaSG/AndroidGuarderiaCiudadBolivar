@@ -7,10 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
@@ -43,7 +40,7 @@ class AdministradorLogin : AppCompatActivity() {
         // Botón para restablecer la contraseña
         val tvForgotPassword: TextView = findViewById(R.id.tvForgotPassword)
         tvForgotPassword.setOnClickListener {
-            val intent = Intent(this, Recuperar_password::class.java)
+            val intent = Intent(this, recuperar_password_1::class.java)
             startActivity(intent)
         }
     }

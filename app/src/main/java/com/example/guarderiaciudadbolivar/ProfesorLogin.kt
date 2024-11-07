@@ -40,7 +40,7 @@ class ProfesorLogin : AppCompatActivity() {
         // Botón para restablecer la contraseña
         val tvForgotPassword: TextView = findViewById(R.id.tvForgotPassword)
         tvForgotPassword.setOnClickListener {
-            val intent = Intent(this, Recuperar_password::class.java)
+            val intent = Intent(this, recuperar_password_1::class.java)
             startActivity(intent)
         }
     }
