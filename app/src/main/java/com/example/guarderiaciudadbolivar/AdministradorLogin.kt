@@ -15,7 +15,8 @@ import com.android.volley.toolbox.Volley
 import org.json.JSONArray
 
 class AdministradorLogin : AppCompatActivity() {
-    val url = "http://192.168.0.6/guarderia/login.php";
+    val urlGlobal = getString(R.string.url)
+    val url = "$urlGlobal/login.php";
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_administrador_login)

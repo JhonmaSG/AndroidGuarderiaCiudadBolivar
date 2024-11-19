@@ -48,7 +48,8 @@ class recuperar_password_1 : AppCompatActivity() {
             val dni = params[1]
 
             return try {
-                val url = URL("http://192.168.0.6/guarderia/verificar_usuario.php")
+                val urlGlobal = getString(R.string.url)
+                val url = URL("$urlGlobal/verificar_usuario.php")
                 val connection = url.openConnection() as HttpURLConnection
                 connection.requestMethod = "POST"
                 connection.doOutput = true

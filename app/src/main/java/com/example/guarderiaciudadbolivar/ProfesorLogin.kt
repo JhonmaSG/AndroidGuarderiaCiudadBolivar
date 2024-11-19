@@ -15,8 +15,7 @@ import com.android.volley.toolbox.Volley
 import org.json.JSONArray
 
 class ProfesorLogin : AppCompatActivity() {
-    //192.168.0.6
-    val url = "http://192.168.0.6/guarderia/login.php";
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profesor_login)
@@ -49,6 +48,9 @@ class ProfesorLogin : AppCompatActivity() {
         val user = findViewById<EditText>(R.id.etUserProfesor).text.toString()
         val password = findViewById<EditText>(R.id.etPasswordProfesor).text.toString()
         val rolId = 1
+
+        val urlGlobal = getString(R.string.url)
+        val url = "$urlGlobal/login.php";
 
         val stringRequest = object : StringRequest(Request.Method.POST, url,
             Response.Listener<String> { response ->

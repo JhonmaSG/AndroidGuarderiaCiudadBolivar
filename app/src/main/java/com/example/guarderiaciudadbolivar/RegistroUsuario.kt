@@ -92,8 +92,9 @@ class RegistroUsuario : AppCompatActivity() {
             val respuesta = params[7]
 
             try {
+                val urlGlobal = getString(R.string.url)
                 // Establecer la conexión
-                val url = URL("http://192.168.0.6/guarderia/registrar_usuario.php")
+                val url = URL("$urlGlobal/registrar_usuario.php")
                 val connection = url.openConnection() as HttpURLConnection
                 connection.requestMethod = "POST"
                 connection.doOutput = true

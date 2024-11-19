@@ -92,7 +92,8 @@ class recuperar_password_3 : AppCompatActivity() {
             val nuevaContrasena = params[2]
 
             try {
-                val url = URL("http://192.168.0.6/guarderia/cambiar_contrasena.php")
+                val urlGlobal = getString(R.string.url)
+                val url = URL("$urlGlobal/cambiar_contrasena.php")
                 val connection = url.openConnection() as HttpURLConnection
                 connection.requestMethod = "POST"
                 connection.doOutput = true
