@@ -15,8 +15,6 @@ import com.android.volley.toolbox.Volley
 import org.json.JSONArray
 
 class AdministradorLogin : AppCompatActivity() {
-    val urlGlobal = getString(R.string.url)
-    val url = "$urlGlobal/login.php";
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_administrador_login)
@@ -50,6 +48,9 @@ class AdministradorLogin : AppCompatActivity() {
         val user = findViewById<EditText>(R.id.etUserAdmin).text.toString()
         val password = findViewById<EditText>(R.id.etPasswordAdmin).text.toString()
         val rolId = 2
+
+        val urlGlobal = getString(R.string.url)
+        val url = "$urlGlobal/login.php";
 
         val stringRequest = object : StringRequest(Request.Method.POST, url,
             Response.Listener<String> { response ->
