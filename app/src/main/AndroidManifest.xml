@@ -17,6 +17,18 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".AgregarIngredientes"
+            android:exported="false" />
+        <activity
+            android:name=".EditarIngredientes"
+            android:exported="false" />
+        <activity
+            android:name=".DetallesIngredientes"
+            android:exported="false" />
+        <activity
+            android:name=".list_ingredientes"
+            android:exported="false" />
+        <activity
             android:name=".recuperar_password_3"
             android:exported="false" />
         <activity
