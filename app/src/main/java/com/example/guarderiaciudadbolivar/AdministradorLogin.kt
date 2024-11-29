@@ -72,12 +72,20 @@ class AdministradorLogin : AppCompatActivity() {
                             // Si no hay error, procesamos los datos del usuario
                             if (userObject.getString("nombreUsuario") == user && userObject.getInt("rolId") == rolId) {
                                 if (userObject.getString("contrasena") == password) {
-                                    Toast.makeText(this, "Bienvenido, Administrador $user", Toast.LENGTH_SHORT).show()
+                                    // Verificar si hay un mensaje de que falta 1 mes para cambiar la contraseña
+                                    if (userObject.has("mensaje")) {
+                                        val mensaje = userObject.getString("mensaje")
+                                        Toast.makeText(this, "Bienvenido, Administrador $user \n" + mensaje, Toast.LENGTH_LONG).show()
+                                    } else {
+                                        Toast.makeText(this, "Bienvenido, Administrador $user", Toast.LENGTH_SHORT).show()
+                                    }
                                     val intent = Intent(this, MainActivity::class.java).apply {
                                         putExtra("proximaPagina", "menuPrincipal")
                                         flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
                                     }
                                     startActivity(intent)
+                                } else {
+                                    Toast.makeText(this, "Contraseña incorrecta", Toast.LENGTH_SHORT).show()
                                 }
                             } else {
                                 Toast.makeText(this, "El ingreso no es válido", Toast.LENGTH_SHORT).show()
