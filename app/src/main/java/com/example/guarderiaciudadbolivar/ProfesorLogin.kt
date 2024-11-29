@@ -50,32 +50,39 @@ class ProfesorLogin : AppCompatActivity() {
         val rolId = 1
 
         val urlGlobal = getString(R.string.url)
-        val url = "$urlGlobal/login.php";
+        val url = "$urlGlobal/login.php"
 
         val stringRequest = object : StringRequest(Request.Method.POST, url,
             Response.Listener<String> { response ->
-                Log.d("LoginResponse", "Respuesta del servidor: $response")  // Registro para depuración
+                Log.d("LoginResponse", "Respuesta del servidor: $response") // Registro para depuración
                 try {
-                    // Verificamos si la respuesta es un JSONArray
-                    val jsonResponse = JSONArray(response)
+                    // Procesamos la respuesta como JSONArray
+                    val responseArray = org.json.JSONArray(response)
 
-                    if (jsonResponse.length() > 0) {
-                        val userObject = jsonResponse.getJSONObject(0)  // Obtenemos el primer objeto del array
+                    // Verificar si hay un error en la respuesta
+                    if (responseArray.length() > 0) {
+                        val userObject = responseArray.getJSONObject(0)
 
-                        // Verificamos si el nombre de usuario y el rol coinciden
-                        if (userObject.getString("nombreUsuario") == user && userObject.getInt("rolId") == rolId) {
-                            // Usuario autenticado correctamente
-                            findViewById<Button>(R.id.btnLoginProfesor).isClickable = false
-                            Toast.makeText(this, "Bienvenido", Toast.LENGTH_SHORT).show()
-                            val intent = Intent(this, MainActivity::class.java).apply {
-                                putExtra("proximaPagina", "menuPrincipal")
-                                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                        // Verificar si la respuesta contiene error
+                        if (userObject.has("error")) {
+                            val errorMessage = userObject.getString("error")
+                            // Mostrar el mensaje de error (por ejemplo, si debe cambiar la contraseña)
+                            Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
+                        } else {
+                            // Si no hay error, procesamos los datos del usuario
+                            if (userObject.getString("nombreUsuario") == user && userObject.getInt("rolId") == rolId) {
+                                if (userObject.getString("contrasena") == password) {
+                                    Toast.makeText(this, "Bienvenido, Profesor $user", Toast.LENGTH_SHORT).show()
+                                    val intent = Intent(this, MainActivity::class.java).apply {
+                                        putExtra("proximaPagina", "menuPrincipal")
+                                        flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                                    }
+                                    startActivity(intent)
+                                }
+                            } else {
+                                Toast.makeText(this, "El ingreso no es válido", Toast.LENGTH_SHORT).show()
                             }
-                            startActivity(intent)
                         }
-                    } else {
-                        // Si la respuesta es un array vacío, significa que el usuario no existe
-                        Toast.makeText(this, "El usuario no existe o el rol no es válido", Toast.LENGTH_SHORT).show()
                     }
                 } catch (e: Exception) {
                     Log.e("LoginError", "Error al procesar la respuesta: ${e.message}")
@@ -83,7 +90,7 @@ class ProfesorLogin : AppCompatActivity() {
                 }
             },
             Response.ErrorListener { error ->
-                Log.e("LoginError", "Error en la solicitud: ${error.message}")  // Registro para depuración
+                Log.e("LoginError", "Error en la solicitud: ${error.message}") // Registro para depuración
                 Toast.makeText(this, "Error al iniciar sesión", Toast.LENGTH_SHORT).show()
             }
         ) {
@@ -95,6 +102,7 @@ class ProfesorLogin : AppCompatActivity() {
                 )
             }
         }
+
         // Crear la cola de solicitudes y añadir la solicitud
         val requestQueue = Volley.newRequestQueue(this)
         requestQueue.add(stringRequest)

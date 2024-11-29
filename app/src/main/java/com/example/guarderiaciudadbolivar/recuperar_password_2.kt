@@ -83,6 +83,10 @@ class recuperar_password_2 : AppCompatActivity() {
                 connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded")
 
                 val postData = "nombreUsuario=$nombreUsuario&dni=$dni"
+
+                // Log para verificar los datos enviados al servidor
+                Log.d("VerificarRespuesta", "Datos enviados: $postData")
+
                 val outputStream: OutputStream = connection.outputStream
                 outputStream.write(postData.toByteArray())
                 outputStream.flush()
@@ -98,6 +102,9 @@ class recuperar_password_2 : AppCompatActivity() {
                         response.append(line)
                     }
                     reader.close()
+
+                    // Log para la respuesta del servidor
+                    Log.d("VerificarRespuesta", "Respuesta del servidor: ${response.toString()}")
 
                     // Analizar la respuesta JSON
                     val jsonResponse = JSONObject(response.toString())
@@ -136,8 +143,9 @@ class recuperar_password_2 : AppCompatActivity() {
             val respuesta = params[2]
 
             try {
-                // URL del script PHP que verificará la respuesta en el servidor
-                val url = URL("http://192.168.0.6/guarderia/verificar_respuesta.php")
+                val urlGlobal = getString(R.string.url)
+                val url = URL("$urlGlobal/verificar_respuesta.php")
+
                 val connection = url.openConnection() as HttpURLConnection
                 connection.requestMethod = "POST"
                 connection.doOutput = true
