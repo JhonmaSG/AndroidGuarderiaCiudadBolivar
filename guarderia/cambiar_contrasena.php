@@ -18,8 +18,8 @@ $result = $stmt->get_result();
 
 // Verifica si se encontró el usuario
 if ($result->num_rows > 0) {
-    // El usuario existe, proceder con la actualización de la contraseña
-    $sql_update = "UPDATE usuarios SET contrasena = ? WHERE nombreUsuario = ? AND dni = ?";
+    // El usuario existe, proceder con la actualización de la contraseña y último acceso
+    $sql_update = "UPDATE usuarios SET contrasena = ?, ultimoCambio = NOW() WHERE nombreUsuario = ? AND dni = ?";
     $stmt_update = $conn->prepare($sql_update);
     $stmt_update->bind_param("ssi", $nuevaContrasena, $nombreUsuario, $dni);
     

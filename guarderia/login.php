@@ -1,4 +1,4 @@
-<?php 
+<?php
 include './conexion.php';  
 $link = conectar();
 
@@ -7,8 +7,8 @@ $user = $_REQUEST['nombreUsuario'];
 $pass = $_REQUEST['contrasena'];
 $rolId = $_REQUEST['rolId'];
 
-if(empty($user) || empty($pass) || empty($rolId)) {
-    echo 'ERROR 1';      
+if (empty($user) || empty($pass) || empty($rolId)) {
+    echo json_encode([['error' => 'Datos incompletos']]);  // Enviar mensaje de error como un array
     exit();
 }
 
@@ -23,19 +23,29 @@ if ($stmt) {
     $res = mysqli_stmt_get_result($stmt);
 
     if (mysqli_num_rows($res) > 0) {
-        $data = array();
-        while($row = mysqli_fetch_assoc($res)) {
-            $data[] = $row;
+        $row = mysqli_fetch_assoc($res);
+
+        // Verificar si el último acceso es mayor a 6 meses
+        $ultimoCambio = $row['ultimoCambio'];
+        $fechaActual = date("Y-m-d");
+        $diferenciaMeses = (strtotime($fechaActual) - strtotime($ultimoCambio)) / (60 * 60 * 24 * 30);
+
+        if ($diferenciaMeses > 6) {
+            // Devolver un array con el error de cambio de contraseña
+            echo json_encode([['error' => 'Debe cambiar la contrasena para poder ingresar']]);
+        } else {
+            // Devolver los datos del usuario dentro de un array
+            echo json_encode([ $row ]);
         }
-        echo json_encode($data);
     } else {
-        echo json_encode(['error' => 'Usuario no encontrado o rol no válido']);
+        // Devolver un array con el error de usuario no encontrado
+        echo json_encode([['error' => 'No coinciden los datos']]);
     }
 
     // Cerrar la consulta preparada
     mysqli_stmt_close($stmt);
 } else {
-    echo "ERROR en la preparación de la consulta: " . mysqli_error($link);
+    echo json_encode([['error' => 'ERROR en la preparación de la consulta: ' . mysqli_error($link)]]);
 }
 
 // Cerrar la conexión a la base de datos
