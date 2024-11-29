@@ -12,7 +12,7 @@ if (empty($user) || empty($pass) || empty($rolId)) {
     exit();
 }
 
-// Consulta SQL segura usando mysqli con `bind_param`
+// Consulta SQL segura usando mysqli con bind_param
 $sql = "SELECT * FROM usuarios WHERE nombreUsuario = ? AND contrasena = ? AND rolId = ?";
 $stmt = mysqli_prepare($link, $sql);
 
@@ -28,13 +28,27 @@ if ($stmt) {
         // Verificar si el último acceso es mayor a 6 meses
         $ultimoCambio = $row['ultimoCambio'];
         $fechaActual = date("Y-m-d");
+
+        // Calcular la diferencia en meses entre la fecha actual y el último cambio
         $diferenciaMeses = (strtotime($fechaActual) - strtotime($ultimoCambio)) / (60 * 60 * 24 * 30);
 
         if ($diferenciaMeses > 6) {
             // Devolver un array con el error de cambio de contraseña
             echo json_encode([['error' => 'Debe cambiar la contrasena para poder ingresar']]);
         } else {
-            // Devolver los datos del usuario dentro de un array
+            // Si le falta 1 mes para los 6 meses, calcular los días restantes
+            if ($diferenciaMeses >= 5 && $diferenciaMeses < 6) {
+                // Calcular los días restantes hasta cumplir 6 meses
+                $fechaLimite = strtotime("+6 months", strtotime($ultimoCambio)); // Añadir 6 meses a la fecha de último cambio
+                $diasRestantes = ($fechaLimite - strtotime($fechaActual)) / (60 * 60 * 24); // Calcular la diferencia en días
+                
+                // Redondear los días a un número entero y asegurarse de que no sea negativo
+                $diasRestantes = max(0, (int)floor($diasRestantes)); // Redondeamos hacia abajo y evitamos valores negativos
+                
+                $row['mensaje'] = "Te faltan $diasRestantes días para cambiar la contraseña.";
+            }
+
+            // Devolver los datos del usuario junto con el mensaje si es necesario
             echo json_encode([ $row ]);
         }
     } else {
