@@ -1,0 +1,199 @@
+-- Crear la base de datos
+CREATE DATABASE guarderia;
+USE guarderia;
+
+-- Crear la tabla Roles
+CREATE TABLE Roles (
+    rolId INT AUTO_INCREMENT PRIMARY KEY,
+    nombreRol VARCHAR(50) UNIQUE NOT NULL
+);
+
+-- Crear la tabla Usuarios con una columna rolId que hace referencia a Roles
+CREATE TABLE Usuarios (
+    usuarioId INT AUTO_INCREMENT PRIMARY KEY,
+    nombreUsuario VARCHAR(50) UNIQUE NOT NULL,
+    contrasena VARCHAR(255) NOT NULL,
+    rolId INT NOT NULL,
+    dni INT UNIQUE NOT NULL,
+    nombres VARCHAR(50) NOT NULL,
+    apellidos VARCHAR(50) NOT NULL,
+    pregunta VARCHAR(50) NOT NULL,
+    respuesta VARCHAR(50) NOT NULL,
+    ultimoCambio DATE,
+    FOREIGN KEY (rolId) REFERENCES Roles(rolId)
+);
+
+-- Crear la tabla Ingredientes
+CREATE TABLE Ingredientes (
+    ingredienteId INT AUTO_INCREMENT PRIMARY KEY,
+    nombreIngrediente VARCHAR(50) UNIQUE NOT NULL
+);
+
+-- Crear la tabla Ninos
+CREATE TABLE Ninos (
+    noMatricula INT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    fechaNacimiento DATE,
+    fechaIngreso DATE,
+    fechaFin DATE,
+    estado VARCHAR(20)
+);
+
+-- Crear la tabla Alergias
+CREATE TABLE Alergias (
+    noMatricula INT,
+    ingredienteId INT,
+    observaciones TEXT,
+    PRIMARY KEY (noMatricula, ingredienteId),
+    FOREIGN KEY (noMatricula) REFERENCES Ninos(noMatricula) ON DELETE CASCADE,
+    FOREIGN KEY (ingredienteId) REFERENCES Ingredientes(ingredienteId) ON DELETE CASCADE
+);
+
+-- Crear la tabla Consumos
+CREATE TABLE Consumos (
+    consumoId INT AUTO_INCREMENT PRIMARY KEY,
+    noMatricula INT,
+    mes INT,
+    costoPorComida DECIMAL(10, 2),
+    FOREIGN KEY (noMatricula) REFERENCES Ninos(noMatricula)
+);
+
+-- Crear la tabla MenuComidas
+CREATE TABLE MenuComidas (
+    noMenu INT PRIMARY KEY
+);
+
+-- Crear la tabla IngredientesMenu
+CREATE TABLE IngredientesMenu (
+    noMenu INT,
+    ingredienteId INT,
+    PRIMARY KEY (noMenu, ingredienteId),
+    FOREIGN KEY (noMenu) REFERENCES MenuComidas(noMenu),
+    FOREIGN KEY (ingredienteId) REFERENCES Ingredientes(ingredienteId)
+);
+
+-- Crear la tabla RegistroComidas
+CREATE TABLE RegistroComidas (
+    idRegistro INT AUTO_INCREMENT PRIMARY KEY,
+    fecha DATE NOT NULL,
+    noMenu INT,
+    noMatricula INT,
+    FOREIGN KEY (noMenu) REFERENCES MenuComidas(noMenu),
+    FOREIGN KEY (noMatricula) REFERENCES Ninos(noMatricula)
+);
+
+-- Crear la tabla Acudiente
+CREATE TABLE Acudiente (
+    cedula INT PRIMARY KEY,
+    nombre VARCHAR(100),
+    direccion VARCHAR(255),
+    parentesco VARCHAR(50)
+);
+
+-- Crear la tabla TelefonosAcudiente
+CREATE TABLE TelefonosAcudiente (
+    telefonoId INT AUTO_INCREMENT PRIMARY KEY,
+    cedula INT,
+    telefono VARCHAR(15),
+    FOREIGN KEY (cedula) REFERENCES Acudiente(cedula)
+);
+
+-- Crear la tabla PagosCotizantes
+CREATE TABLE PagosCotizantes (
+    pagoId INT AUTO_INCREMENT PRIMARY KEY,
+    cedula INT,
+    noMatricula INT,
+    valorPago DECIMAL(10, 2),
+    fechaPago DATE,
+    estado VARCHAR(20),
+    FOREIGN KEY (cedula) REFERENCES Acudiente(cedula),
+    FOREIGN KEY (noMatricula) REFERENCES Ninos(noMatricula)
+);
+
+-- Insertar datos en Roles
+INSERT INTO Roles (nombreRol) VALUES 
+('Profesor'), 
+('Administrador');
+
+-- Insertar datos en Usuarios con los roles definidos
+INSERT INTO Usuarios (nombreUsuario, contrasena, rolId, dni, nombres, apellidos, pregunta, respuesta, ultimoCambio) VALUES
+('jmartinez', '123', 1, 11223344, 'jhon', 'martinez', 'Mascota favorita', 'manuelita','2024-01-28'),  -- Profesor
+('asanchez', '456', 1, 123123123, 'andrea', 'sanchez', 'Lugar favorito', 'barcelona','2024-01-28'), -- Profesor
+('mlopez', '789', 1, 111111111, 'maria', 'lopez', 'Comida favorita', 'pasta','2023-11-20'),   -- Profesor
+('rgarcia', 'admin123', 2, 222222222, 'rocio', 'garcia', 'Pelicula favorita', 'la llegada','2024-11-01'),   -- Administrador
+('gfernandez', 'admin456', 2, 333333333, 'gabriel', 'fernandez', 'Cosa favorita', 'carro','2023-11-01'); -- Administrador
+
+-- Insertar datos en Ingredientes
+INSERT INTO Ingredientes (nombreIngrediente) VALUES
+('Leche'),
+('Pan'),
+('Pollo'),
+('Arroz'),
+('Verduras'),
+('Frutas'),
+('Pasta'),
+('Huevo');
+
+-- Insertar datos en Ninos
+INSERT INTO Ninos (noMatricula, nombre, fechaNacimiento, fechaIngreso, fechaFin, estado) VALUES
+(1001, 'Juan Pérez', '2019-03-15', '2021-01-10', NULL, 'Activo'),
+(1002, 'Ana Gómez', '2018-07-22', '2020-09-15', NULL, 'Activo'),
+(1003, 'Pedro Rodríguez', '2017-11-30', '2018-12-01', '2020-08-10', 'Inactivo'),
+(1004, 'Lucía Fernández', '2019-05-11', '2021-02-20', NULL, 'Activo'),
+(1005, 'Diego Martínez', '2020-01-05', '2021-03-01', NULL, 'Activo');
+
+-- Insertar datos en Alergias
+INSERT INTO Alergias (noMatricula, ingredienteId, observaciones) VALUES
+(1001, 1, 'Alergia leve a la leche.'),
+(1002, 4, 'No puede consumir pollo.'),
+(1003, 6, 'Alergia severa a las frutas.'),
+(1004, 5, 'Sin alergias.'),
+(1005, 2, 'Alergia moderada al pan.');
+
+-- Insertar datos en MenuComidas
+INSERT INTO MenuComidas (noMenu) VALUES
+(1),
+(2),
+(3),
+(4),
+(5);
+
+-- Insertar datos en IngredientesMenu
+INSERT INTO IngredientesMenu (noMenu, ingredienteId) VALUES
+(1, 1),  -- Leche
+(1, 2),  -- Pan
+(2, 3),  -- Pollo
+(2, 4),  -- Arroz
+(3, 5),  -- Verduras
+(3, 6),  -- Frutas
+(4, 7),  -- Pasta
+(5, 8);  -- Huevo
+
+-- Insertar datos en RegistroComidas
+INSERT INTO RegistroComidas (fecha, noMenu, noMatricula) VALUES
+('2024-11-01', 1, 1001),
+('2024-11-01', 2, 1002),
+('2024-11-01', 3, 1003),
+('2024-11-02', 1, 1004),
+('2024-11-02', 5, 1005);
+
+-- Insertar datos en Acudiente
+INSERT INTO Acudiente (cedula, nombre, direccion, parentesco) VALUES
+(123456789, 'María Pérez', 'Calle 10, No. 20', 'Madre'),
+(987654321, 'José Gómez', 'Calle 5, No. 15', 'Padre'),
+(111222333, 'Laura Rodríguez', 'Calle 2, No. 30', 'Madre');
+
+-- Insertar datos en TelefonosAcudiente
+INSERT INTO TelefonosAcudiente (cedula, telefono) VALUES
+(123456789, '3001234567'),
+(123456789, '3012345678'),
+(987654321, '3023456789'),
+(111222333, '3034567890');
+
+-- Insertar datos en PagosCotizantes
+INSERT INTO PagosCotizantes (cedula, noMatricula, valorPago, fechaPago, estado) VALUES
+(123456789, 1001, 150.00, '2024-10-01', 'Pagado'),
+(987654321, 1002, 150.00, '2024-10-01', 'Pagado'),
+(111222333, 1003, 150.00, '2024-10-01', 'Pendiente'),
+(123456789, 1004, 150.00, '2024-11-01', 'Pagado'),
+(987654321, 1005, 150.00, '2024-11-01', 'Pendiente');
