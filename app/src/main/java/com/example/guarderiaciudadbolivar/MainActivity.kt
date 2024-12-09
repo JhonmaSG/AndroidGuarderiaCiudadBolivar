@@ -1,12 +1,10 @@
 package com.example.guarderiaciudadbolivar
 
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-<<<<<<< HEAD
-=======
 import android.text.TextUtils.replace
->>>>>>> origin/dev
 import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.Gravity
@@ -95,34 +93,17 @@ class MainActivity : AppCompatActivity() {
                     showOpcionesDesplegable(this@MainActivity)
                     return@OnNavigationItemSelectedListener true
                 }
-<<<<<<< HEAD
+
             }
         } catch (e: Exception) {
             // Manejo de excepciones: registrar el error si ocurre
             Log.e("MainActivity", "Error al manejar el menú de navegación: ${e.message}")
         }
         // Si no se ha manejado ninguna opción, devolver falso
-=======
-
-                R.id.menu_ninos -> {
-                    // Aquí haces la redirección a la actividad del CRUD de niños
-                    val intent = Intent(this@MainActivity, activity_list_ninos::class.java)
-                    startActivity(intent)  // Inicia ActivityListNinos
-                    return@OnNavigationItemSelectedListener true
-                }
-            }
-        } catch (e: Exception) {
-            Log.e("MainActivity", "Error al manejar el menú de navegación: ${e.message}")
-        }
->>>>>>> origin/dev
         false
     }
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/dev
     @RequiresApi(Build.VERSION_CODES.Q)
     private fun showOpcionesDesplegable(context: Context) {
         try {

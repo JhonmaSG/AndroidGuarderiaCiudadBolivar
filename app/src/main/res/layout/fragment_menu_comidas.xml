@@ -1,23 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-<<<<<<< HEAD
-=======
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
->>>>>>> origin/dev
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".menu_comidas_fragment">
 
-<<<<<<< HEAD
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="menu comidas" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
-=======
     <ListView
         android:id="@+id/listIngrediente"
         android:layout_width="match_parent"
@@ -39,4 +28,4 @@
         android:backgroundTint="@android:color/holo_blue_light"
         android:elevation="8dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
->>>>>>> origin/dev
+

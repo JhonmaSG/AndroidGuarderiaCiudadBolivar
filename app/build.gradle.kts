@@ -27,11 +27,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 }
 
@@ -42,17 +42,17 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-<<<<<<< HEAD
+
     implementation("androidx.fragment:fragment-ktx:1.8.3")
     implementation ("com.google.android.material:material:1.6.1")
     implementation("androidx.appcompat:appcompat:1.5.1")
-=======
+
     implementation("androidx.fragment:fragment-ktx:1.5.5")
     implementation ("com.google.android.material:material:1.6.1")
     implementation("androidx.appcompat:appcompat:1.5.1")
     implementation("com.android.volley:volley:1.2.1")
     implementation(libs.volley)
->>>>>>> origin/dev
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
