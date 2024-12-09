@@ -42,9 +42,17 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+<<<<<<< HEAD
     implementation("androidx.fragment:fragment-ktx:1.8.3")
     implementation ("com.google.android.material:material:1.6.1")
     implementation("androidx.appcompat:appcompat:1.5.1")
+=======
+    implementation("androidx.fragment:fragment-ktx:1.5.5")
+    implementation ("com.google.android.material:material:1.6.1")
+    implementation("androidx.appcompat:appcompat:1.5.1")
+    implementation("com.android.volley:volley:1.2.1")
+    implementation(libs.volley)
+>>>>>>> origin/dev
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
