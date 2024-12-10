@@ -16,12 +16,16 @@ cargarVariablesDeEntorno();
 
 function conectar(){
     $host = getenv('DB_HOST');
+    $port = (int) getenv('DB_PORT');
     $user = "root";
     $pass = "";
-    $bd = "guarderia";
+    $bd = getenv('DB_NAME');
+
+    // Depuración de los parámetros
+    echo "Host: $host, User: $user, Password: $pass, Database: $bd, Port: $port</br>";
 
     // Conectar al servidor MySQL
-    $link = mysqli_connect($host, $user, $pass, $bd);
+    $link = mysqli_connect($host, $user, $pass, $bd, $port);
 
     // Verificar la conexión al servidor MySQL
     if (!$link) {
@@ -34,11 +38,11 @@ function conectar(){
     }
     return $link;
 }
-/*
+
 // Probar la conexión llamando a la función
 $link = conectar();
 if ($link) {
     echo "Conexión exitosa a la base de datos.";
-}*/
+}
 ?>
 
