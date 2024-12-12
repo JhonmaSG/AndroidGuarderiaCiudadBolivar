@@ -1,14 +1,20 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 include './conexion.php';  
 $link = conectar();
 
 // Recibir los datos
-$user = $_REQUEST['nombreUsuario'];
-$pass = $_REQUEST['contrasena'];
-$rolId = $_REQUEST['rolId'];
+$user = $_REQUEST['nombreUsuario']?? null;
+$pass = $_REQUEST['contrasena']?? null;
+$rolId = $_REQUEST['rolId']?? null;
+
 
 if (empty($user) || empty($pass) || empty($rolId)) {
+    
     echo json_encode([['error' => 'Datos incompletos']]);  // Enviar mensaje de error como un array
+
     exit();
 }
 
@@ -61,6 +67,7 @@ if ($stmt) {
 } else {
     echo json_encode([['error' => 'ERROR en la preparación de la consulta: ' . mysqli_error($link)]]);
 }
+
 
 // Cerrar la conexión a la base de datos
 mysqli_close($link);

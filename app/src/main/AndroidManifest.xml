@@ -5,6 +5,7 @@
 
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
 
     <application
@@ -28,7 +29,7 @@
             android:name=".DetallesIngredientes"
             android:exported="false" />
         <activity
-            android:name=".list_ingredientes"
+            android:name=".Ingredientes"
             android:exported="false" />
         <activity
             android:name=".recuperar_password_3"

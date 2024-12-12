@@ -46,7 +46,7 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.8.3")
     implementation ("com.google.android.material:material:1.6.1")
     implementation("androidx.appcompat:appcompat:1.5.1")
-
+    implementation ("org.jsoup:jsoup:1.15.3")
     implementation("androidx.fragment:fragment-ktx:1.5.5")
     implementation ("com.google.android.material:material:1.6.1")
     implementation("androidx.appcompat:appcompat:1.5.1")

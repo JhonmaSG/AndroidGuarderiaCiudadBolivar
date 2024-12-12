@@ -22,7 +22,7 @@ function conectar(){
     $bd = getenv('DB_NAME');
 
     // Depuración de los parámetros
-    echo "Host: $host, User: $user, Password: $pass, Database: $bd, Port: $port</br>";
+    // echo "Host: $host, User: $user, Password: $pass, Database: $bd, Port: $port</br>";
 
     // Conectar al servidor MySQL
     $link = mysqli_connect($host, $user, $pass, $bd, $port);
@@ -40,9 +40,9 @@ function conectar(){
 }
 
 // Probar la conexión llamando a la función
+/*
 $link = conectar();
 if ($link) {
     echo "Conexión exitosa a la base de datos.";
-}
+}*/
 ?>
-
