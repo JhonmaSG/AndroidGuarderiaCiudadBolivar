@@ -70,7 +70,7 @@ class menu_principal_fragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         try {
             val cerrar_sesion_usuario: ImageView? = view?.findViewById(R.id.cerrar_sesion_user)
-            obtenerUsuario()
+            //obtenerUsuario()
             cerrar_sesion_usuario?.let {
                 cerrar_sesion_usuario.setImageResource(R.drawable.boton_de_encendido)
                 cerrar_sesion_usuario.setOnClickListener {

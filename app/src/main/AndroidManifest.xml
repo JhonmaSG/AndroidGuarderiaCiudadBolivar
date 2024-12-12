@@ -73,7 +73,10 @@
             android:name=".InscripcionChildrenActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".MainActivity_admin"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity_usuario"
             android:exported="false" />
 
     </application>

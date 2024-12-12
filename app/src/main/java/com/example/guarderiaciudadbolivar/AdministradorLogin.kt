@@ -12,7 +12,6 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import org.json.JSONArray
 
 class AdministradorLogin : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -79,7 +78,7 @@ class AdministradorLogin : AppCompatActivity() {
                                     } else {
                                         Toast.makeText(this, "Bienvenido, Administrador $user", Toast.LENGTH_SHORT).show()
                                     }
-                                    val intent = Intent(this, MainActivity::class.java).apply {
+                                    val intent = Intent(this, MainActivity_admin::class.java).apply {
                                         putExtra("proximaPagina", "menuPrincipal")
                                         flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
                                     }

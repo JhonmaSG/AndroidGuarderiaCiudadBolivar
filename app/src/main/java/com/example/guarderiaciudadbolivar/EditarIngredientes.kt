@@ -64,7 +64,7 @@ class EditarIngredientes : AppCompatActivity() {
             progressDialog.dismiss()
             Toast.makeText(this, response, Toast.LENGTH_SHORT).show()
             // Regresar al fragmento después de la actualización
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, MainActivity_admin::class.java))
             finish()
         }, { error ->
             progressDialog.dismiss()

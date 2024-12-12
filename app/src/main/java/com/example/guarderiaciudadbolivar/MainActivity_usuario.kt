@@ -1,28 +1,22 @@
 package com.example.guarderiaciudadbolivar
 
 import android.content.Context
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.text.TextUtils.replace
 import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.Gravity
-
 import android.widget.PopupMenu
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-
-class MainActivity : AppCompatActivity() {
+class MainActivity_usuario: AppCompatActivity() {
     lateinit var navMenu: BottomNavigationView
 
 
@@ -32,9 +26,9 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         // Establecer el diseño de la actividad
         try {
-            setContentView(R.layout.activity_main)
+            setContentView(R.layout.activity_main_usuario)
             // Inicializar el menú de navegación
-            navMenu = findViewById(R.id.navMenu)
+            navMenu = findViewById(R.id.navMenu_usuario)
             // Configurar el listener para los elementos del menú de navegación
             navMenu.setOnNavigationItemSelectedListener(mOnNavMenu)
             // Seleccionar el primer elemento del menú de navegación
@@ -45,13 +39,13 @@ class MainActivity : AppCompatActivity() {
             Log.e("MainActivity", "Error al inicializar la actividad: ${e.message}")
             // Aquí podrías establecer valores por defecto o realizar otras acciones
         }
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+/*
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main_usuario)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
 
-        }
+        }**/
     }
 
     @RequiresApi(Build.VERSION_CODES.Q)
@@ -61,27 +55,27 @@ class MainActivity : AppCompatActivity() {
                 R.id.menu_principal -> {
                     // Reemplazar el fragmento con el menú principal
                     supportFragmentManager.commit {
-                        replace<menu_principal_fragment>(R.id.fragment_conteiner)
+                        replace<menu_principal_fragment>(R.id.fragment_conteiner_usuario)
                         setReorderingAllowed(true)
                         addToBackStack("replacement")
                     }
                     return@OnNavigationItemSelectedListener true
                 }
 
-                R.id.inscripciones -> {
-                    // Reemplazar el fragmento con el menú de comidas
+                R.id.ver_inscripciones -> {
+                    // Reemplazar el fragmento con el menú de inscripciones
                     supportFragmentManager.commit {
-                        replace<menu_inscripciones_fragment>(R.id.fragment_conteiner)
+                        replace<menu_inscripciones_fragment>(R.id.fragment_conteiner_usuario)
                         setReorderingAllowed(true)
                         addToBackStack("replacement")
                     }
                     return@OnNavigationItemSelectedListener true
                 }
 
-                R.id.pagos -> {
+                R.id.ver_historial -> {
                     // Reemplazar el fragmento con el fragmento de pagos
                     supportFragmentManager.commit {
-                        replace<pagos_fragment>(R.id.fragment_conteiner)
+                        replace<ver_reportes>(R.id.fragment_conteiner_usuario)
                         setReorderingAllowed(true)
                         addToBackStack("replacement")
                     }
@@ -90,7 +84,7 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.item_desplegable -> {
                     // Mostrar opciones del menú desplegable
-                    showOpcionesDesplegable(this@MainActivity)
+                    showOpcionesDesplegable(this@MainActivity_usuario)
                     return@OnNavigationItemSelectedListener true
                 }
 
@@ -108,8 +102,8 @@ class MainActivity : AppCompatActivity() {
     private fun showOpcionesDesplegable(context: Context) {
         try {
             // Crear un PopupMenu utilizando el contexto y el estilo personalizado
-            val popupMenu = PopupMenu(ContextThemeWrapper(context, R.style.CustomPopupMenu), findViewById(R.id.navMenu))
-            popupMenu.menuInflater.inflate(R.menu.sub_menu, popupMenu.menu)
+            val popupMenu = PopupMenu(ContextThemeWrapper(context, R.style.CustomPopupMenu), findViewById(R.id.navMenu_usuario))
+            popupMenu.menuInflater.inflate(R.menu.sub_menu_usuario, popupMenu.menu)
 
             // Configura el menú para que se muestre hacia la derecha
             popupMenu.gravity = Gravity.END
@@ -120,17 +114,9 @@ class MainActivity : AppCompatActivity() {
                 try {
                     when (menuItem.itemId) {
                         R.id.menu_comidas -> {
-                            // Reemplazar el fragmento con el fragmento de pagos
+                            // Reemplazar el fragmento con el fragmento de comidas
                             supportFragmentManager.commit {
-                                replace<menu_comidas_fragment>(R.id.fragment_conteiner)
-                                setReorderingAllowed(true)
-                                addToBackStack("replacement")
-                            }
-                        }
-                        R.id.historial -> {
-                            // Reemplazar el fragmento con el menú de comidas
-                            supportFragmentManager.commit {
-                                replace<historial_fragment>(R.id.fragment_conteiner)
+                                replace<menu_comidas_fragment>(R.id.fragment_conteiner_usuario)
                                 setReorderingAllowed(true)
                                 addToBackStack("replacement")
                             }
@@ -138,7 +124,7 @@ class MainActivity : AppCompatActivity() {
                         R.id.creditos -> {
                             // Reemplazar el fragmento con el menú principal
                             supportFragmentManager.commit {
-                                replace<fragment_creditos>(R.id.fragment_conteiner)
+                                replace<fragment_creditos>(R.id.fragment_conteiner_usuario)
                                 setReorderingAllowed(true)
                                 addToBackStack("replacement")
                             }
@@ -161,9 +147,4 @@ class MainActivity : AppCompatActivity() {
             Log.e("MainActivity", "Error al mostrar el menú emergente: ${e.message}")
         }
     }
-
-
 }
-
-
-

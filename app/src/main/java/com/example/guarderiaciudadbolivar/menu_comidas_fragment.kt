@@ -12,6 +12,7 @@ import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
@@ -90,6 +91,7 @@ class menu_comidas_fragment : Fragment() {
         Log.d("eliminarIngrediente", "ID enviado: $id")
         val progressDialog = ProgressDialog(requireContext())
         progressDialog.setMessage("Eliminando...")
+        progressDialog.setCancelable(false)
         progressDialog.show()
         val stringRequest = object : StringRequest(Request.Method.POST, urlEliminar, { response ->
             progressDialog.dismiss()
@@ -123,6 +125,7 @@ class menu_comidas_fragment : Fragment() {
         val url = getString(R.string.url) + "/ver_ingredientes.php"
         val progressDialog = ProgressDialog(requireContext())
         progressDialog.setMessage("Cargando...")
+        progressDialog.setCancelable(false)
         progressDialog.show()
         val stringRequest = StringRequest(Request.Method.POST, url, { response ->
             progressDialog.dismiss()

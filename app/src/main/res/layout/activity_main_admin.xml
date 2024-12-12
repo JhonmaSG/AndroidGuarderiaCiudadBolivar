@@ -2,16 +2,17 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/main_admin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity_admin">
 
     <FrameLayout
-        android:id="@+id/fragment_conteiner"
+        android:id="@+id/fragment_conteiner_admin"
         android:name="com.example.guarderiaciudadbolivar.Menu_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="34dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,7 +20,7 @@
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/navMenu"
+        android:id="@+id/navMenu_admin"
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:layout_gravity="bottom"
@@ -27,7 +28,7 @@
         android:paddingTop="8dp"
         app:itemBackground="@drawable/menu_item_background"
         app:itemIconTint="@color/black"
-        app:menu="@menu/navegation_menu">
+        app:menu="@menu/navegation_menu_admin">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
