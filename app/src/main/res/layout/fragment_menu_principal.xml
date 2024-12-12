@@ -49,7 +49,7 @@
         android:layout_marginTop="248dp"
         android:layout_marginEnd="185dp"
         android:fontFamily="casual"
-        android:text="B"
+        android:text=""
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="@android:color/black"
@@ -60,4 +60,16 @@
         app:layout_constraintHorizontal_bias="0.475"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/logo_guarderia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:paddingBottom="10dp"
+        android:src="@mipmap/guarderia"
+        app:layout_constraintEnd_toEndOf="@+id/bienvenido"
+        app:layout_constraintStart_toStartOf="@+id/bienvenido"
+        app:layout_constraintTop_toBottomOf="@+id/bienvenido" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

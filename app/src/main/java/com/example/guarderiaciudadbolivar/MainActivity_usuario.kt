@@ -34,6 +34,7 @@ class MainActivity_usuario: AppCompatActivity() {
             // Seleccionar el primer elemento del menú de navegación
             navMenu.selectedItemId = R.id.menu_principal
 
+
         } catch (e: Exception) {
             // Manejo de excepciones: registrar el error y establecer valores predeterminados
             Log.e("MainActivity", "Error al inicializar la actividad: ${e.message}")

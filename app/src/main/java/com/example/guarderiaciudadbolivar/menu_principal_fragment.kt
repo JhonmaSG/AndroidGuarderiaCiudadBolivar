@@ -70,12 +70,23 @@ class menu_principal_fragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         try {
             val cerrar_sesion_usuario: ImageView? = view?.findViewById(R.id.cerrar_sesion_user)
+            val mostrar_usuario = view?.findViewById<TextView>(R.id.bienvenido)
             //obtenerUsuario()
             cerrar_sesion_usuario?.let {
                 cerrar_sesion_usuario.setImageResource(R.drawable.boton_de_encendido)
                 cerrar_sesion_usuario.setOnClickListener {
                     showOpcionesDesplegable(requireContext())
                 }
+
+                // Obtiene el valor del usuario guardado en la clase AdministradorLogin
+                val usuario_admin = AdministradorLogin.UsuarioManager.currentUser ?: ""
+                val usuario_profesor = ProfesorLogin.UsuarioManager.currentUser ?: ""
+                if (usuario_admin != ""){
+                    mostrar_usuario?.text = "$usuario_admin"
+                }else{
+                    mostrar_usuario?.text = "$usuario_profesor"
+                }
+
 
             }
         } catch (e: Exception) {
@@ -122,50 +133,11 @@ class menu_principal_fragment : Fragment() {
 
     }
 
-    private fun obtenerUsuario() {
-        val cookieManager = CookieManager()
-        CookieHandler.setDefault(cookieManager)
-
-        val url = getString(R.string.url) + "/obtener_nombre_usuario.php" // Replace with your endpoint
-        val progressDialog = ProgressDialog(requireContext())
-        progressDialog.setMessage("Cargando...")
-        progressDialog.show()
-
-        val stringRequest = StringRequest(Request.Method.GET, url, { response ->
-            progressDialog.dismiss()
-            try {
-                Log.d("API Response", "Response: $response")
-                val jsonObject = JSONObject(response)
-                val success = jsonObject.getBoolean("success")
-                if (success) {
-
-                    val sacar_usuario = jsonObject.getString("nombre_usuario") // Replace with your key
-                    val mostrar_usuario = view?.findViewById<TextView>(R.id.bienvenido)
-                    mostrar_usuario?.text = "$sacar_usuario"
-                } else {
-                    val message = if (jsonObject.has("mensaje")) {
-                        jsonObject.getString("mensaje")
-                    } else {
-                        "Ocurrió un error desconocido."
-                    }
-                    Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-                }
-            } catch (e: Exception) {
-                Log.e("menu_principal_fragment", "Error al procesar los datos: ${e.message}")
-            }
-        }, { error ->
-            progressDialog.dismiss()
-            Log.e("menu_principal_fragment", "Error de red: ${error.message}")
-        })
-
-        val requestQueue: RequestQueue = Volley.newRequestQueue(requireContext())
-        requestQueue.add(stringRequest)
-    }
 
     // Compañero de objeto para crear nuevas instancias del fragment
     companion object {
         // Constantes para los nombres de los parámetros
-        const val NAME = "param1"
+        var NAME = "param1"
         const val ADDRESS = "param2"
 
         // Método estático para crear una nueva instancia del fragment con parámetros

@@ -12,8 +12,14 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import org.json.JSONArray
 
 class AdministradorLogin : AppCompatActivity() {
+
+    object UsuarioManager {
+        var currentUser: String = ""
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_administrador_login)
@@ -48,15 +54,19 @@ class AdministradorLogin : AppCompatActivity() {
         val password = findViewById<EditText>(R.id.etPasswordAdmin).text.toString()
         val rolId = 2
 
+        // Guarda el nombre del usuario en una variable estática
+        UsuarioManager.currentUser = user
+
         val urlGlobal = getString(R.string.url)
         val url = "$urlGlobal/login.php"
 
-        val stringRequest = object : StringRequest(Request.Method.POST, url,
+        val stringRequest = object : StringRequest(
+            Method.POST, url,
             Response.Listener<String> { response ->
                 Log.d("LoginResponse", "Respuesta del servidor: $response") // Registro para depuración
                 try {
                     // Procesamos la respuesta como JSONArray
-                    val responseArray = org.json.JSONArray(response)
+                    val responseArray = JSONArray(response)
 
                     // Verificar si hay un error en la respuesta
                     if (responseArray.length() > 0) {

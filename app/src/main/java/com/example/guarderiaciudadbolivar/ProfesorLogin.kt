@@ -12,8 +12,13 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.guarderiaciudadbolivar.AdministradorLogin.UsuarioManager
 
 class ProfesorLogin : AppCompatActivity() {
+
+    object UsuarioManager {
+        var currentUser: String = ""
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +52,9 @@ class ProfesorLogin : AppCompatActivity() {
         val user = findViewById<EditText>(R.id.etUserProfesor).text.toString()
         val password = findViewById<EditText>(R.id.etPasswordProfesor).text.toString()
         val rolId = 1
+
+        // Guarda el nombre del usuario en una variable estática
+        com.example.guarderiaciudadbolivar.AdministradorLogin.UsuarioManager.currentUser = user
 
         val urlGlobal = getString(R.string.url)
         val url = "$urlGlobal/login.php"
