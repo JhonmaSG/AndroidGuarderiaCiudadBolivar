@@ -1,10 +1,11 @@
 package com.example.guarderiaciudadbolivar
 
 data class Nino(
-    var noMatricula: String,
-    var nombre: String,
-    var fechaNacimiento: String,
-    var fechaIngreso: String,
-    var fechaFin: String,
-    var estado: String
+    val noMatricula: Int,
+    val nombre: String,
+    val fechaNacimiento: String,
+    val fechaIngreso: String,
+    val fechaFin: String?,
+    val estado: String
 )
+

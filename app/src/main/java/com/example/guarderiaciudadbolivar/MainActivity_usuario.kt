@@ -66,7 +66,7 @@ class MainActivity_usuario: AppCompatActivity() {
                 R.id.ver_inscripciones -> {
                     // Reemplazar el fragmento con el menú de inscripciones
                     supportFragmentManager.commit {
-                        replace<menu_inscripciones_fragment>(R.id.fragment_conteiner_usuario)
+                        replace<menu_ninos_fragment>(R.id.fragment_conteiner_usuario)
                         setReorderingAllowed(true)
                         addToBackStack("replacement")
                     }

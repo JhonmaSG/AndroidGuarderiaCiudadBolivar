@@ -32,6 +32,18 @@
             android:name=".Ingredientes"
             android:exported="false" />
         <activity
+            android:name=".AgregarUsuarios"
+            android:exported="false" />
+        <activity
+            android:name=".EditarUsuarios"
+            android:exported="false" />
+        <activity
+            android:name=".DetallesUsuarios"
+            android:exported="false" />
+        <activity
+            android:name=".Usuarios"
+            android:exported="false" />
+        <activity
             android:name=".recuperar_password_3"
             android:exported="false" />
         <activity
