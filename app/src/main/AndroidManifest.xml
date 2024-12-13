@@ -2,23 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-<<<<<<< HEAD
-=======
-
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
-
->>>>>>> b538f4e11a7945aaa265882f9ca42c96c2fea7f1
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-<<<<<<< HEAD
-=======
         android:usesCleartextTraffic="true"
->>>>>>> b538f4e11a7945aaa265882f9ca42c96c2fea7f1
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -26,12 +17,9 @@
         android:theme="@style/Theme.GuarderiaCiudadBolivar"
         tools:targetApi="31">
         <activity
-<<<<<<< HEAD
             android:name=".HistorialChildrenActivity"
             android:exported="false" />
         <activity
-            android:name=".DailyRecordActivity"
-=======
             android:name=".AgregarIngredientes"
             android:exported="false" />
         <activity
@@ -39,9 +27,6 @@
             android:exported="false" />
         <activity
             android:name=".DetallesIngredientes"
-            android:exported="false" />
-        <activity
-            android:name=".Ingredientes"
             android:exported="false" />
         <activity
             android:name=".recuperar_password_3"
@@ -69,10 +54,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".HistorialChildrenActivity"
->>>>>>> b538f4e11a7945aaa265882f9ca42c96c2fea7f1
-            android:exported="false" />
+
         <activity
             android:name=".MenuActivity"
             android:exported="false" />
@@ -86,7 +68,6 @@
             android:name=".InscripcionChildrenActivity"
             android:exported="false" />
         <activity
-<<<<<<< HEAD
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -95,14 +76,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-=======
+        <activity
             android:name=".MainActivity_admin"
             android:exported="false" />
         <activity
             android:name=".MainActivity_usuario"
             android:exported="false" />
-
->>>>>>> b538f4e11a7945aaa265882f9ca42c96c2fea7f1
     </application>
 
 </manifest>

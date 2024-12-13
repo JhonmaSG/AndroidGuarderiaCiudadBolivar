@@ -25,11 +25,11 @@ class AgregarNinoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_agregar_nino, container, false)
+        val view = inflater.inflate(R.layout.activity_agregar_nino, container, false)
 
         etNombre = view.findViewById(R.id.etNombre)
-        etEdad = view.findViewById(R.id.etEdad)
-        etAlergias = view.findViewById(R.id.etAlergias)
+        etEdad = view.findViewById(R.id.etEstado)
+        etFechaNacimiento = view.findViewById(R.id.etFechaNacimiento)
         btnAgregar = view.findViewById(R.id.btnAgregar)
 
         btnAgregar.setOnClickListener {
@@ -51,7 +51,7 @@ class AgregarNinoFragment : Fragment() {
             val request = object : StringRequest(Method.POST, url,
                 Response.Listener { response ->
                     Toast.makeText(requireContext(), response, Toast.LENGTH_SHORT).show()
-                    findNavController().navigateUp() // Regresa al listado
+                    //findNavController().navigateUp() // Regresa al listado
                 },
                 Response.ErrorListener { error ->
                     Toast.makeText(requireContext(), "Error: ${error.message}", Toast.LENGTH_SHORT).show()

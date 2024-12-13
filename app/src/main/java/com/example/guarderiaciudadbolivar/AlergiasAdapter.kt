@@ -11,7 +11,6 @@ import com.example.guarderiaciudadbolivar.R
 
 class AlergiasAdapter(private val context: Context, private val alergias: ArrayList<Alergia>) : RecyclerView.Adapter<AlergiasAdapter.AlergiaViewHolder>(),
     ListAdapter {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlergiaViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_alergia, parent, false)
         return AlergiaViewHolder(view)
@@ -27,12 +26,12 @@ class AlergiasAdapter(private val context: Context, private val alergias: ArrayL
     }
 
     inner class AlergiaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val ingredienteId: TextView = itemView.findViewById(R.id.tvIngredienteId)
-        private val observaciones: TextView = itemView.findViewById(R.id.tvObservaciones)
+        //private val ingredienteId: TextView = itemView.findViewById(R.id.tvIngredienteId)
+        //private val observaciones: TextView = itemView.findViewById(R.id.tvObservaciones)
 
         fun bind(alergia: Alergia) {
-            ingredienteId.text = alergia.ingredienteId.toString()
-            observaciones.text = alergia.observaciones
+            //ingredienteId.text = alergia.ingredienteId.toString()
+            //observaciones.text = alergia.observaciones
         }
     }
 
