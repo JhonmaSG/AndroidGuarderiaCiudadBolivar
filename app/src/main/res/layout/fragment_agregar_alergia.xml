@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/edtNoMatricula"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="No. Matrícula" />
+
+    <EditText
+        android:id="@+id/edtIngredienteId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ingrediente ID" />
+
+    <EditText
+        android:id="@+id/edtObservaciones"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Observaciones" />
+
+    <Button
+        android:id="@+id/btnAgregarAlergia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Agregar Alergia" />
+</LinearLayout>

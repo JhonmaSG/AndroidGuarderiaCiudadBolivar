@@ -1,6 +1,5 @@
 package com.example.guarderiaciudadbolivar
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,59 +9,65 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.android.volley.Request
-import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 
 class AgregarNinoFragment : Fragment() {
 
-    private lateinit var etNombre: EditText
-    private lateinit var etEdad: EditText
-    private lateinit var etAlergias: EditText
-    private lateinit var btnAgregar: Button
+    private lateinit var edtNombre: EditText
+    private lateinit var edtFechaNacimiento: EditText
+    private lateinit var edtFechaIngreso: EditText
+    private lateinit var btnGuardar: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.activity_agregar_nino, container, false)
+        val view = inflater.inflate(R.layout.fragment_agregar_nino, container, false)
 
-        etNombre = view.findViewById(R.id.etNombre)
-        etEdad = view.findViewById(R.id.etEstado)
-        etFechaNacimiento = view.findViewById(R.id.etFechaNacimiento)
-        btnAgregar = view.findViewById(R.id.btnAgregar)
+        edtNombre = view.findViewById(R.id.edtNombre)
+        edtFechaNacimiento = view.findViewById(R.id.edtFechaNacimiento)
+        edtFechaIngreso = view.findViewById(R.id.edtFechaIngreso)
+        btnGuardar = view.findViewById(R.id.btnGuardar)
 
-        btnAgregar.setOnClickListener {
-            agregarNino()
-        }
+        btnGuardar.setOnClickListener { guardarNino() }
 
         return view
     }
 
-    private fun agregarNino() {
-        val nombre = etNombre.text.toString()
-        val edad = etEdad.text.toString().toIntOrNull()
-        val alergias = etAlergias.text.toString()
+    private fun guardarNino() {
+        val nombre = edtNombre.text.toString().trim()
+        val fechaNacimiento = edtFechaNacimiento.text.toString().trim()
+        val fechaIngreso = edtFechaIngreso.text.toString().trim()
 
-        if (nombre.isNotEmpty() && edad != null) {
-            val url = "https://tu-servidor.com/crear_nino.php"
-            val params = mapOf("nombre" to nombre, "edad" to edad.toString(), "alergias" to alergias)
-
-            val request = object : StringRequest(Method.POST, url,
-                Response.Listener { response ->
-                    Toast.makeText(requireContext(), response, Toast.LENGTH_SHORT).show()
-                    //findNavController().navigateUp() // Regresa al listado
-                },
-                Response.ErrorListener { error ->
-                    Toast.makeText(requireContext(), "Error: ${error.message}", Toast.LENGTH_SHORT).show()
-                }) {
-                override fun getParams(): Map<String, String> = params
-            }
-
-            Volley.newRequestQueue(requireContext()).add(request)
-        } else {
-            Toast.makeText(requireContext(), "Por favor, llena todos los campos.", Toast.LENGTH_SHORT).show()
+        if (nombre.isEmpty() || fechaNacimiento.isEmpty() || fechaIngreso.isEmpty()) {
+            Toast.makeText(requireContext(), "Complete todos los campos", Toast.LENGTH_SHORT).show()
+            return
         }
+
+        val url = getString(R.string.url) + "/insertar_nino.php"
+        val stringRequest = object : StringRequest(
+            Request.Method.POST, url,
+            { response ->
+                if (response.equals("Niño Registrado", true)) {
+                    Toast.makeText(requireContext(), "Niño registrado exitosamente", Toast.LENGTH_SHORT).show()
+                    requireActivity().onBackPressed()
+                } else {
+                    Toast.makeText(requireContext(), response, Toast.LENGTH_SHORT).show()
+                }
+            },
+            { error ->
+                Toast.makeText(requireContext(), error.message, Toast.LENGTH_SHORT).show()
+            }
+        ) {
+            override fun getParams(): Map<String, String> {
+                val params = HashMap<String, String>()
+                params["nombre"] = nombre
+                params["fechaNacimiento"] = fechaNacimiento
+                params["fechaIngreso"] = fechaIngreso
+                return params
+            }
+        }
+        Volley.newRequestQueue(requireContext()).add(stringRequest)
     }
 }
-

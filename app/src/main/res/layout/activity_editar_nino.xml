@@ -1,47 +1,57 @@
-<!-- activity_editar_nino.xml -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:padding="16dp">
 
-    <EditText
-        android:id="@+id/edtNombre"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nombre"
-        android:inputType="text"/>
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/edtFechaNacimiento"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Fecha de Nacimiento"
-        android:inputType="date"/>
+        <EditText
+            android:id="@+id/edtNoMatricula"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="No. Matrícula (para buscar)"
+            android:inputType="number" />
 
-    <EditText
-        android:id="@+id/edtFechaIngreso"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Fecha de Ingreso"
-        android:inputType="date"/>
+        <!-- Mismos campos que en agregar -->
+        <EditText
+            android:id="@+id/edtNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre" />
 
-    <EditText
-        android:id="@+id/edtFechaFin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Fecha Fin"
-        android:inputType="date"/>
+        <EditText
+            android:id="@+id/edtFechaNacimiento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fecha de Nacimiento" />
 
-    <EditText
-        android:id="@+id/edtEstado"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Estado"
-        android:inputType="text"/>
+        <EditText
+            android:id="@+id/edtFechaIngreso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fecha de Ingreso" />
 
-    <Button
-        android:id="@+id/btnEditar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Editar Niño"/>
-</LinearLayout>
+        <EditText
+            android:id="@+id/edtFechaFin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fecha de Fin" />
+
+        <EditText
+            android:id="@+id/edtEstado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Estado" />
+
+        <Button
+            android:id="@+id/btnActualizar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Actualizar"
+            android:layout_marginTop="16dp" />
+    </LinearLayout>
+</ScrollView>

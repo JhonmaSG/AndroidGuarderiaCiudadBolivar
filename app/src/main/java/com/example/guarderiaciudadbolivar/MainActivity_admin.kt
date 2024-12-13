@@ -126,6 +126,14 @@ class MainActivity_admin : AppCompatActivity() {
                                 addToBackStack("replacement")
                             }
                         }
+                        R.id.crear_usuario -> {
+                            // Reemplazar el fragmento con el menú de comidas
+                            supportFragmentManager.commit {
+                                replace<menu_usuarios_fragment>(R.id.fragment_conteiner_admin)
+                                setReorderingAllowed(true)
+                                addToBackStack("replacement")
+                            }
+                        }
                         R.id.creditos -> {
                             // Reemplazar el fragmento con el menú principal
                             supportFragmentManager.commit {

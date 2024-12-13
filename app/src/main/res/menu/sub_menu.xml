@@ -6,6 +6,10 @@
         android:title="Reportes"
         android:icon="@drawable/baseline_menu_book_24"/>
     <item
+        android:id="@+id/crear_usuario"
+        android:title="Usuarios"
+        android:icon="@drawable/baseline_person_add_alt_1_24"/>
+    <item
         android:id="@+id/creditos"
         android:title="Creditos"
         android:icon="@drawable/clientela"/>

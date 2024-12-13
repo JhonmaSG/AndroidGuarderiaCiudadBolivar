@@ -2,8 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
 
     <application
         android:allowBackup="true"
@@ -17,9 +20,6 @@
         android:theme="@style/Theme.GuarderiaCiudadBolivar"
         tools:targetApi="31">
         <activity
-            android:name=".HistorialChildrenActivity"
-            android:exported="false" />
-        <activity
             android:name=".AgregarIngredientes"
             android:exported="false" />
         <activity
@@ -27,6 +27,21 @@
             android:exported="false" />
         <activity
             android:name=".DetallesIngredientes"
+            android:exported="false" />
+        <activity
+            android:name=".Ingredientes"
+            android:exported="false" />
+        <activity
+            android:name=".AgregarUsuarios"
+            android:exported="false" />
+        <activity
+            android:name=".EditarUsuarios"
+            android:exported="false" />
+        <activity
+            android:name=".DetallesUsuarios"
+            android:exported="false" />
+        <activity
+            android:name=".Usuarios"
             android:exported="false" />
         <activity
             android:name=".recuperar_password_3"
@@ -54,7 +69,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name=".HistorialChildrenActivity"
+            android:exported="false" />
         <activity
             android:name=".MenuActivity"
             android:exported="false" />
@@ -68,20 +85,12 @@
             android:name=".InscripcionChildrenActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".MainActivity_admin"
             android:exported="false" />
         <activity
             android:name=".MainActivity_usuario"
             android:exported="false" />
+
     </application>
 
 </manifest>

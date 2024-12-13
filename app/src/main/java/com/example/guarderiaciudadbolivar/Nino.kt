@@ -5,5 +5,7 @@ data class Nino(
     val nombre: String,
     val fechaNacimiento: String,
     val fechaIngreso: String,
+    val fechaFin: String?,
     val estado: String
 )
+
