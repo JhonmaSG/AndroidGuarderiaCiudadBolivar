@@ -2,4 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+<<<<<<< HEAD
+=======
+    <color name="light_blue">#62CCEF</color>
+
+>>>>>>> b538f4e11a7945aaa265882f9ca42c96c2fea7f1
 </resources>
