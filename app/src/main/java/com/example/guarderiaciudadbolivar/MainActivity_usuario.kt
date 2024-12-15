@@ -10,8 +10,6 @@ import android.widget.PopupMenu
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -111,17 +109,41 @@ class MainActivity_usuario: AppCompatActivity() {
             popupMenu.setForceShowIcon(true)
 
             // Establece un listener para manejar los clics en los elementos del menú
-            popupMenu.setOnMenuItemClickListener { menuItem ->
+            popupMenu.setOnMenuItemClickListener OnNavigationItemSelectedListener@{ menuItem ->
                 try {
                     when (menuItem.itemId) {
                         R.id.menu_comidas -> {
-                            // Reemplazar el fragmento con el fragmento de comidas
                             supportFragmentManager.commit {
                                 replace<menu_comidas_fragment>(R.id.fragment_conteiner_usuario)
                                 setReorderingAllowed(true)
                                 addToBackStack("replacement")
                             }
                         }
+                        R.id.ingredientes -> {
+                            supportFragmentManager.commit {
+                                replace<ingredientes_fragment>(R.id.fragment_conteiner_usuario)
+                                setReorderingAllowed(true)
+                                addToBackStack("replacement")
+                            }
+                        }
+                        R.id.listViewAlergias -> {
+                            supportFragmentManager.commit {
+                                replace<AlergiasFragment>(R.id.fragment_conteiner_usuario)
+                                setReorderingAllowed(true)
+                                addToBackStack("replacement")
+                            }
+                            return@OnNavigationItemSelectedListener true
+                        }
+                        R.id.listViewNinos -> {
+                            // Reemplazar el fragmento con la gestión de niños
+                            supportFragmentManager.commit {
+                                replace<NinosFragment>(R.id.fragment_conteiner_usuario)
+                                setReorderingAllowed(true)
+                                addToBackStack("replacement")
+                            }
+                            return@OnNavigationItemSelectedListener true
+                        }
+
                         R.id.creditos -> {
                             // Reemplazar el fragmento con el menú principal
                             supportFragmentManager.commit {

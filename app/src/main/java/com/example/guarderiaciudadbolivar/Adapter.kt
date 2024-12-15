@@ -23,7 +23,6 @@ class Adapter(
         // Obtener el ingrediente actual
         val ingrediente = arrayIngredientes[position]
 
-        // Configurar los valores en las vistas
         tvid.text = ingrediente.ingredienteId
         tnombre.text = ingrediente.nombreIngrediente
 

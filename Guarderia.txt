@@ -60,15 +60,24 @@ CREATE TABLE Consumos (
 
 -- Crear la tabla MenuComidas
 CREATE TABLE MenuComidas (
-    noMenu INT PRIMARY KEY
+    noMenu INT AUTO_INCREMENT PRIMARY KEY,
+    nombreMenu VARCHAR(100) NOT NULL
 );
 
--- Crear la tabla IngredientesMenu
-CREATE TABLE IngredientesMenu (
+-- Crear la tabla Platos
+CREATE TABLE Platos (
+    platoId INT AUTO_INCREMENT PRIMARY KEY,
+    nombrePlato VARCHAR(100) NOT NULL,
     noMenu INT,
+    FOREIGN KEY (noMenu) REFERENCES MenuComidas(noMenu)
+);
+
+-- Crear la tabla IngredientesPlatos
+CREATE TABLE IngredientesPlatos (
+    platoId INT,
     ingredienteId INT,
-    PRIMARY KEY (noMenu, ingredienteId),
-    FOREIGN KEY (noMenu) REFERENCES MenuComidas(noMenu),
+    PRIMARY KEY (platoId, ingredienteId),
+    FOREIGN KEY (platoId) REFERENCES Platos(platoId),
     FOREIGN KEY (ingredienteId) REFERENCES Ingredientes(ingredienteId)
 );
 
@@ -87,7 +96,8 @@ CREATE TABLE Acudiente (
     cedula INT PRIMARY KEY,
     nombre VARCHAR(100),
     direccion VARCHAR(255),
-    parentesco VARCHAR(50)
+    parentesco VARCHAR(50),
+    numeroCuenta VARCHAR(20)
 );
 
 -- Crear la tabla TelefonosAcudiente
@@ -132,7 +142,9 @@ INSERT INTO Ingredientes (nombreIngrediente) VALUES
 ('Verduras'),
 ('Frutas'),
 ('Pasta'),
-('Huevo');
+('Huevo'),
+('Queso'),
+('Carne');
 
 -- Insertar datos en Ninos
 INSERT INTO Ninos (noMatricula, nombre, fechaNacimiento, fechaIngreso, fechaFin, estado) VALUES
@@ -140,55 +152,76 @@ INSERT INTO Ninos (noMatricula, nombre, fechaNacimiento, fechaIngreso, fechaFin,
 (1002, 'Ana Gómez', '2018-07-22', '2020-09-15', NULL, 'Activo'),
 (1003, 'Pedro Rodríguez', '2017-11-30', '2018-12-01', '2020-08-10', 'Inactivo'),
 (1004, 'Lucía Fernández', '2019-05-11', '2021-02-20', NULL, 'Activo'),
-(1005, 'Diego Martínez', '2020-01-05', '2021-03-01', NULL, 'Activo');
+(1005, 'Diego Martínez', '2020-01-05', '2021-03-01', NULL, 'Activo'),
+(1006, 'María López', '2020-12-12', '2022-02-10', NULL, 'Activo'),
+(1007, 'Carlos García', '2017-04-18', '2018-05-25', NULL, 'Inactivo'),
+(1008, 'Luisa Torres', '2016-07-29', '2019-09-15', '2023-12-01', 'Inactivo'),
+(1009, 'Manuel Díaz', '2019-08-20', '2021-06-01', NULL, 'Activo'),
+(1010, 'Andrea Sánchez', '2018-03-05', '2020-01-10', NULL, 'Activo');
 
 -- Insertar datos en Alergias
 INSERT INTO Alergias (noMatricula, ingredienteId, observaciones) VALUES
 (1001, 1, 'Alergia leve a la leche.'),
-(1002, 4, 'No puede consumir pollo.'),
+(1002, 4, 'No puede consumir arroz.'),
 (1003, 6, 'Alergia severa a las frutas.'),
 (1004, 5, 'Sin alergias.'),
-(1005, 2, 'Alergia moderada al pan.');
+(1005, 2, 'Alergia moderada al pan.'),
+(1006, 7, 'Evitar pasta.'),
+(1007, 3, 'No tolera pollo.'),
+(1008, 10, 'Alergia a la carne.'),
+(1009, 8, 'Sin alergias.'),
+(1010, 9, 'Intolerancia al queso.');
 
 -- Insertar datos en MenuComidas
-INSERT INTO MenuComidas (noMenu) VALUES
-(1),
-(2),
-(3),
-(4),
-(5);
+INSERT INTO MenuComidas (nombreMenu) VALUES
+('Desayuno Saludable'),
+('Almuerzo Completo'),
+('Cena Ligera');
 
--- Insertar datos en IngredientesMenu
-INSERT INTO IngredientesMenu (noMenu, ingredienteId) VALUES
-(1, 1),  -- Leche
-(1, 2),  -- Pan
-(2, 3),  -- Pollo
-(2, 4),  -- Arroz
-(3, 5),  -- Verduras
-(3, 6),  -- Frutas
-(4, 7),  -- Pasta
-(5, 8);  -- Huevo
+-- Insertar datos en Platos
+INSERT INTO Platos (nombrePlato, noMenu) VALUES
+('Huevos con Pan', 1),
+('Leche con Pan', 1),
+('Arroz con Pollo', 2),
+('Verduras al Vapor', 2),
+('Frutas Frescas', 2),
+('Sopa de Pasta', 3),
+('Carne Asada', 3);
+
+-- Insertar datos en IngredientesPlatos
+INSERT INTO IngredientesPlatos (platoId, ingredienteId) VALUES
+(1, 8), (1, 2),
+(2, 1), (2, 2),
+(3, 4), (3, 3),
+(4, 5),
+(5, 6),
+(6, 7),
+(7, 10);
 
 -- Insertar datos en RegistroComidas
 INSERT INTO RegistroComidas (fecha, noMenu, noMatricula) VALUES
-('2024-11-01', 1, 1001),
-('2024-11-01', 2, 1002),
-('2024-11-01', 3, 1003),
-('2024-11-02', 1, 1004),
-('2024-11-02', 5, 1005);
+('2024-12-01', 1, 1001),
+('2024-12-01', 1, 1002),
+('2024-12-02', 2, 1003),
+('2024-12-02', 2, 1004),
+('2024-12-03', 3, 1005),
+('2024-12-03', 3, 1006);
 
 -- Insertar datos en Acudiente
-INSERT INTO Acudiente (cedula, nombre, direccion, parentesco) VALUES
-(123456789, 'María Pérez', 'Calle 10, No. 20', 'Madre'),
-(987654321, 'José Gómez', 'Calle 5, No. 15', 'Padre'),
-(111222333, 'Laura Rodríguez', 'Calle 2, No. 30', 'Madre');
+INSERT INTO Acudiente (cedula, nombre, direccion, parentesco, numeroCuenta) VALUES
+(123456789, 'María Pérez', 'Calle 10, No. 20', 'Madre', '0012345678'),
+(987654321, 'José Gómez', 'Calle 5, No. 15', 'Padre', '0012345679'),
+(111222333, 'Laura Rodríguez', 'Calle 2, No. 30', 'Madre', '0012345680'),
+(444555666, 'Carlos Díaz', 'Calle 8, No. 12', 'Padre', '0012345681'),
+(777888999, 'Sofía López', 'Calle 3, No. 7', 'Madre', '0012345682');
 
 -- Insertar datos en TelefonosAcudiente
 INSERT INTO TelefonosAcudiente (cedula, telefono) VALUES
 (123456789, '3001234567'),
-(123456789, '3012345678'),
 (987654321, '3023456789'),
-(111222333, '3034567890');
+(111222333, '3034567890'),
+(444555666, '3045678901'),
+(777888999, '3056789012');
 
 -- Insertar datos en PagosCotizantes
 INSERT INTO PagosCotizantes (cedula, noMatricula, valorPago, fechaPago, estado) VALUES
@@ -196,4 +229,9 @@ INSERT INTO PagosCotizantes (cedula, noMatricula, valorPago, fechaPago, estado) 
 (987654321, 1002, 150.00, '2024-10-01', 'Pagado'),
 (111222333, 1003, 150.00, '2024-10-01', 'Pendiente'),
 (123456789, 1004, 150.00, '2024-11-01', 'Pagado'),
-(987654321, 1005, 150.00, '2024-11-01', 'Pendiente');
+(987654321, 1005, 150.00, '2024-11-01', 'Pendiente'),
+(111222333, 1006, 150.00, '2024-12-01', 'Pagado'),
+(987654321, 1007, 200.00, '2024-12-05', 'Pagado'),
+(123456789, 1008, 200.00, '2024-12-05', 'Pendiente'),
+(111222333, 1009, 180.00, '2024-12-10', 'Pagado'),
+(123456789, 1010, 180.00, '2024-12-10', 'Pendiente');

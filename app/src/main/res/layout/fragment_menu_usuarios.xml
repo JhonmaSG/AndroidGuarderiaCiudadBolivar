@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:fitsSystemWindows="true"
-    tools:context=".menu_comidas_fragment">
+    tools:context=".ingredientes_fragment">
 
     <ListView
         android:id="@+id/listUsuario"

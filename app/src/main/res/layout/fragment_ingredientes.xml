@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:fitsSystemWindows="true"
-    tools:context=".menu_comidas_fragment">
+    tools:context=".ingredientes_fragment">
 
     <!-- Título -->
     <TextView
         android:id="@+id/txtTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Menú de Comidas"
+        android:text="Ingredientes"
         android:textSize="22sp"
         android:textColor="#2DB1B6"
         android:textStyle="bold"
@@ -22,7 +23,7 @@
         tools:ignore="MissingConstraints" />
 
     <ListView
-        android:id="@+id/listMenuComida"
+        android:id="@+id/listIngrediente"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingTop="50px"
@@ -44,5 +45,5 @@
         android:src="@android:drawable/ic_input_add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
+

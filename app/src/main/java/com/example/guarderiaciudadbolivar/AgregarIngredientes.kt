@@ -3,7 +3,6 @@ package com.example.guarderiaciudadbolivar
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -55,7 +54,7 @@ class AgregarIngredientes : AppCompatActivity() {
                     if (response.equals("Ingrediente Registrado", ignoreCase = true)) {
                         Toast.makeText(this, "Ingrediente Registrado", Toast.LENGTH_SHORT).show()
                         // Redirigir a la actividad principal (o el fragmento)
-                        val intent = Intent(this, menu_comidas_fragment::class.java)
+                        val intent = Intent(this, ingredientes_fragment::class.java)
                         startActivity(intent)
                         finish() // Finaliza la actividad actual para evitar que el usuario vuelva a ella al presionar "Atrás"
                     } else {

@@ -27,6 +27,7 @@ class DetallesNinoFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_detalles_nino, container, false)
 
+        // Inicializar los TextViews
         txtNombre = view.findViewById(R.id.txtNombre)
         txtFechaNacimiento = view.findViewById(R.id.txtFechaNacimiento)
         txtFechaIngreso = view.findViewById(R.id.txtFechaIngreso)
@@ -36,9 +37,22 @@ class DetallesNinoFragment : Fragment() {
         // Obtener la matrícula del niño
         noMatricula = arguments?.getInt("noMatricula") ?: 0
 
+        // Limpiar cualquier contenido anterior antes de cargar nuevos detalles
+        limpiarDetalles()
+
+        // Cargar los detalles del niño
         cargarDetallesNino()
 
         return view
+    }
+
+    // Función para limpiar los detalles anteriores
+    private fun limpiarDetalles() {
+        txtNombre.text = ""
+        txtFechaNacimiento.text = ""
+        txtFechaIngreso.text = ""
+        txtFechaFin.text = ""
+        txtEstado.text = ""
     }
 
     private fun cargarDetallesNino() {
@@ -48,6 +62,7 @@ class DetallesNinoFragment : Fragment() {
             { response ->
                 // Suponiendo que la respuesta es un JSON con los datos del niño
                 val obj = JSONObject(response)
+                // Actualizar los TextViews con los nuevos valores
                 txtNombre.text = obj.getString("nombre")
                 txtFechaNacimiento.text = obj.getString("fechaNacimiento")
                 txtFechaIngreso.text = obj.getString("fechaIngreso")

@@ -2,23 +2,35 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-
-
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GuarderiaCiudadBolivar"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".fragment_platos"
+            android:exported="false" />
+        <activity
+            android:name=".list_platos"
+            android:exported="false" />
+        <activity
+            android:name=".list_menu_comidas"
+            android:exported="false" />
+        <activity
+            android:name=".fragment_menu_comidas"
+            android:exported="false" />
+        <activity
+            android:name=".ActualizarAlergiaActivity"
+            android:exported="false" />
         <activity
             android:name=".AgregarIngredientes"
             android:exported="false" />
@@ -29,9 +41,6 @@
             android:name=".DetallesIngredientes"
             android:exported="false" />
         <activity
-            android:name=".Ingredientes"
-            android:exported="false" />
-        <activity
             android:name=".AgregarUsuarios"
             android:exported="false" />
         <activity
@@ -39,9 +48,6 @@
             android:exported="false" />
         <activity
             android:name=".DetallesUsuarios"
-            android:exported="false" />
-        <activity
-            android:name=".Usuarios"
             android:exported="false" />
         <activity
             android:name=".recuperar_password_3"
@@ -66,6 +72,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -90,7 +97,6 @@
         <activity
             android:name=".MainActivity_usuario"
             android:exported="false" />
-
     </application>
 
 </manifest>
