@@ -4,5 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="light_blue">#62CCEF</color>
     <color name="admin">#CC6CE7</color>
+    <color name="Generic">#FE9900</color>
 
 </resources>

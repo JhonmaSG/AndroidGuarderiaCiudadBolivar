@@ -107,7 +107,7 @@ class MainActivity_admin : AppCompatActivity() {
     private fun showOpcionesDesplegable(context: Context) {
         try {
             // Crear un PopupMenu utilizando el contexto y el estilo personalizado
-            val popupMenu = PopupMenu(ContextThemeWrapper(context, R.style.CustomPopupMenu), findViewById(R.id.navMenu_admin))
+            val popupMenu = PopupMenu(ContextThemeWrapper(context, R.style.CustomPopupMenu_admin), findViewById(R.id.navMenu_admin))
             popupMenu.menuInflater.inflate(R.menu.sub_menu, popupMenu.menu)
 
             // Configura el menú para que se muestre hacia la derecha

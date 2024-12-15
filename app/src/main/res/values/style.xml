@@ -3,6 +3,12 @@
     <style name="CustomPopupMenu" parent="Widget.AppCompat.PopupMenu">
         <item name="android:background">@drawable/rounded_popup_background</item>
     </style>
+    <style name="CustomPopupMenu_usuario" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:background">@drawable/rounded_popup_background_usuario</item>
+    </style>
+    <style name="CustomPopupMenu_admin" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:background">@drawable/rounded_popup_background_admin</item>
+    </style>
     <style name="CustomTextStyle">
         <item name="android:background">@drawable/menu_item_background_admin</item>
         <item name="android:textColor">@color/white</item>
