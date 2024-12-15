@@ -9,13 +9,14 @@
     <!-- Título o encabezado para la lista de platos -->
     <TextView
         android:id="@+id/txtPlatosTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="378dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:text="Platos del Menú"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="8dp"/>
+        android:textAlignment="center"
+        android:textColor="#2DB1B6"
+        android:textSize="25sp"
+        android:textStyle="bold" />
 
     <!-- ListView para mostrar los platos del menú seleccionado -->
     <ListView
@@ -24,6 +25,7 @@
         android:layout_height="wrap_content"
         android:divider="@android:color/darker_gray"
         android:dividerHeight="0.5dp"
+        android:textSize="20sp"
         android:padding="8dp"
         android:choiceMode="singleChoice" />
 

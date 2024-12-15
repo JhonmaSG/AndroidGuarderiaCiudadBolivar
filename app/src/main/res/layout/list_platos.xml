@@ -4,15 +4,12 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/txtPlatoId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Plato ID" />
+
 
     <TextView
         android:id="@+id/txtNombrePlato"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
         android:text="Nombre del Plato" />
 </LinearLayout>

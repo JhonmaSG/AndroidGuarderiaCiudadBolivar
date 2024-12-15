@@ -44,10 +44,24 @@ class menu_comidas_fragment : Fragment() {
 
             // Cargar los menús desde el servidor
             cargarMenus()
+
+            // Configurar el OnItemClickListener para manejar la selección de un menú
+            listView.setOnItemClickListener { parent, view, position, id ->
+                val menuSeleccionado = ArrayMenuList[position]
+                val menuId = menuSeleccionado.menuId
+
+                // Navegar al fragmento de platos con el ID del menú seleccionado
+                val fragment = PlatoFragment.newInstance(menuId)
+                val transaction = requireActivity().supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.fragment_conteiner_usuario, fragment)
+                transaction.addToBackStack(null)
+                transaction.commit()
+            }
         } catch (e: Exception) {
             Log.e("MenuComidasFragment", "Error al inicializar el fragmento: ${e.message}")
         }
     }
+
 
     private fun cargarMenus() {
         val url = getString(R.string.url) + "/ver_menu_platos.php"

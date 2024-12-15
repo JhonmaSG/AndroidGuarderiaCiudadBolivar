@@ -29,14 +29,25 @@ CREATE TABLE Ingredientes (
     nombreIngrediente VARCHAR(50) UNIQUE NOT NULL
 );
 
--- Crear la tabla Ninos
+-- Crear la tabla Acudiente
+CREATE TABLE Acudiente (
+    cedula INT PRIMARY KEY,
+    nombre VARCHAR(100),
+    direccion VARCHAR(255),
+    parentesco VARCHAR(50),
+    numeroCuenta VARCHAR(20)
+);
+
+-- Crear la tabla Ninos (agregando la columna fechaIngreso)
 CREATE TABLE Ninos (
     noMatricula INT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
+    acudienteCedula INT NOT NULL,
     fechaNacimiento DATE,
     fechaIngreso DATE,
     fechaFin DATE,
-    estado VARCHAR(20)
+    estado VARCHAR(20),
+    FOREIGN KEY (acudienteCedula ) REFERENCES Acudiente(cedula)
 );
 
 -- Crear la tabla Alergias
@@ -91,15 +102,6 @@ CREATE TABLE RegistroComidas (
     FOREIGN KEY (noMatricula) REFERENCES Ninos(noMatricula)
 );
 
--- Crear la tabla Acudiente
-CREATE TABLE Acudiente (
-    cedula INT PRIMARY KEY,
-    nombre VARCHAR(100),
-    direccion VARCHAR(255),
-    parentesco VARCHAR(50),
-    numeroCuenta VARCHAR(20)
-);
-
 -- Crear la tabla TelefonosAcudiente
 CREATE TABLE TelefonosAcudiente (
     telefonoId INT AUTO_INCREMENT PRIMARY KEY,
@@ -125,13 +127,13 @@ INSERT INTO Roles (nombreRol) VALUES
 ('Profesor'), 
 ('Administrador');
 
--- Insertar datos en Usuarios con los roles definidos
+-- Insertar datos en Usuarios (no cambios en estos registros)
 INSERT INTO Usuarios (nombreUsuario, contrasena, rolId, dni, nombres, apellidos, pregunta, respuesta, ultimoCambio) VALUES
-('jmartinez', '123', 1, 11223344, 'jhon', 'martinez', 'Mascota favorita', 'manuelita','2024-01-28'),  -- Profesor
-('asanchez', '456', 1, 123123123, 'andrea', 'sanchez', 'Lugar favorito', 'barcelona','2024-01-28'), -- Profesor
-('mlopez', '789', 1, 111111111, 'maria', 'lopez', 'Comida favorita', 'pasta','2023-11-20'),   -- Profesor
-('rgarcia', 'admin123', 2, 222222222, 'rocio', 'garcia', 'Pelicula favorita', 'la llegada','2024-11-01'),   -- Administrador
-('gfernandez', 'admin456', 2, 333333333, 'gabriel', 'fernandez', 'Cosa favorita', 'carro','2023-11-01'); -- Administrador
+('jmartinez', '123', 1, 11223344, 'jhon', 'martinez', 'Mascota favorita', 'manuelita','2024-11-28'),
+('asanchez', '456', 1, 123123123, 'andrea', 'sanchez', 'Lugar favorito', 'barcelona','2024-01-28'),
+('mlopez', '789', 1, 111111111, 'maria', 'lopez', 'Comida favorita', 'pasta','2023-11-20'),
+('rgarcia', 'admin123', 2, 222222222, 'rocio', 'garcia', 'Pelicula favorita', 'la llegada','2024-11-01'),
+('gfernandez', 'admin456', 2, 333333333, 'gabriel', 'fernandez', 'Cosa favorita', 'carro','2023-11-01');
 
 -- Insertar datos en Ingredientes
 INSERT INTO Ingredientes (nombreIngrediente) VALUES
@@ -144,94 +146,139 @@ INSERT INTO Ingredientes (nombreIngrediente) VALUES
 ('Pasta'),
 ('Huevo'),
 ('Queso'),
-('Carne');
-
--- Insertar datos en Ninos
-INSERT INTO Ninos (noMatricula, nombre, fechaNacimiento, fechaIngreso, fechaFin, estado) VALUES
-(1001, 'Juan Pérez', '2019-03-15', '2021-01-10', NULL, 'Activo'),
-(1002, 'Ana Gómez', '2018-07-22', '2020-09-15', NULL, 'Activo'),
-(1003, 'Pedro Rodríguez', '2017-11-30', '2018-12-01', '2020-08-10', 'Inactivo'),
-(1004, 'Lucía Fernández', '2019-05-11', '2021-02-20', NULL, 'Activo'),
-(1005, 'Diego Martínez', '2020-01-05', '2021-03-01', NULL, 'Activo'),
-(1006, 'María López', '2020-12-12', '2022-02-10', NULL, 'Activo'),
-(1007, 'Carlos García', '2017-04-18', '2018-05-25', NULL, 'Inactivo'),
-(1008, 'Luisa Torres', '2016-07-29', '2019-09-15', '2023-12-01', 'Inactivo'),
-(1009, 'Manuel Díaz', '2019-08-20', '2021-06-01', NULL, 'Activo'),
-(1010, 'Andrea Sánchez', '2018-03-05', '2020-01-10', NULL, 'Activo');
-
--- Insertar datos en Alergias
-INSERT INTO Alergias (noMatricula, ingredienteId, observaciones) VALUES
-(1001, 1, 'Alergia leve a la leche.'),
-(1002, 4, 'No puede consumir arroz.'),
-(1003, 6, 'Alergia severa a las frutas.'),
-(1004, 5, 'Sin alergias.'),
-(1005, 2, 'Alergia moderada al pan.'),
-(1006, 7, 'Evitar pasta.'),
-(1007, 3, 'No tolera pollo.'),
-(1008, 10, 'Alergia a la carne.'),
-(1009, 8, 'Sin alergias.'),
-(1010, 9, 'Intolerancia al queso.');
-
--- Insertar datos en MenuComidas
-INSERT INTO MenuComidas (nombreMenu) VALUES
-('Desayuno Saludable'),
-('Almuerzo Completo'),
-('Cena Ligera');
-
--- Insertar datos en Platos
-INSERT INTO Platos (nombrePlato, noMenu) VALUES
-('Huevos con Pan', 1),
-('Leche con Pan', 1),
-('Arroz con Pollo', 2),
-('Verduras al Vapor', 2),
-('Frutas Frescas', 2),
-('Sopa de Pasta', 3),
-('Carne Asada', 3);
-
--- Insertar datos en IngredientesPlatos
-INSERT INTO IngredientesPlatos (platoId, ingredienteId) VALUES
-(1, 8), (1, 2),
-(2, 1), (2, 2),
-(3, 4), (3, 3),
-(4, 5),
-(5, 6),
-(6, 7),
-(7, 10);
-
--- Insertar datos en RegistroComidas
-INSERT INTO RegistroComidas (fecha, noMenu, noMatricula) VALUES
-('2024-12-01', 1, 1001),
-('2024-12-01', 1, 1002),
-('2024-12-02', 2, 1003),
-('2024-12-02', 2, 1004),
-('2024-12-03', 3, 1005),
-('2024-12-03', 3, 1006);
+('Carne'),
+('Tomate'),
+('Pepino'),
+('Acelga'),
+('Salmón'),
+('Patatas');
 
 -- Insertar datos en Acudiente
 INSERT INTO Acudiente (cedula, nombre, direccion, parentesco, numeroCuenta) VALUES
-(123456789, 'María Pérez', 'Calle 10, No. 20', 'Madre', '0012345678'),
-(987654321, 'José Gómez', 'Calle 5, No. 15', 'Padre', '0012345679'),
-(111222333, 'Laura Rodríguez', 'Calle 2, No. 30', 'Madre', '0012345680'),
-(444555666, 'Carlos Díaz', 'Calle 8, No. 12', 'Padre', '0012345681'),
-(777888999, 'Sofía López', 'Calle 3, No. 7', 'Madre', '0012345682');
+(101010, 'Pedro Perez', 'Calle Falsa 123', 'Padre', '1234567890'),
+(102020, 'Maria Lopez', 'Calle Real 456', 'Madre', '0987654321'),
+(103030, 'Juan Garcia', 'Avenida Siempre Viva 789', 'Padre', '1122334455'),
+(104040, 'Ana Torres', 'Carrera 12 345', 'Madre', '2233445566'),
+(105050, 'Carlos Ramirez', 'Calle 5, Zona 6', 'Padre', '3344556677'),
+(106060, 'Luisa Martell', 'Calle Luna 456', 'Madre', '4455667788'),
+(107070, 'Jose Jimenez', 'Avenida Libertad 123', 'Padre', '5566778899'),
+(108080, 'Claudia Hernandez', 'Calle Sol 789', 'Madre', '6677889900'),
+(109090, 'Ricardo Vasquez', 'Calle del Río 321', 'Padre', '7788990011'),
+(110101, 'Marta Paredes', 'Calle Alta 654', 'Madre', '8899001122');
+
+-- Insertar datos en Ninos
+INSERT INTO Ninos (noMatricula, nombre, acudienteCedula, fechaNacimiento, fechaIngreso, fechaFin, estado) VALUES
+(1, 'Lucas Perez', 101010, '2021-01-01', '2023-09-01', NULL, 'Activo'),
+(2, 'Martina Lopez', 102020, '2021-02-15', '2023-10-01', NULL, 'Activo'),
+(3, 'Antonio Garcia', 103030, '2021-03-10', '2023-11-01', NULL, 'Activo'),
+(4, 'Isabella Torres', 104040, '2021-04-20', '2023-08-01', NULL, 'Activo'),
+(5, 'Mateo Ramirez', 105050, '2021-05-25', '2023-09-15', NULL, 'Activo'),
+(6, 'Sofia Martell', 106060, '2021-06-30', '2023-10-05', NULL, 'Activo'),
+(7, 'Samuel Jimenez', 107070, '2021-07-05', '2023-08-25', NULL, 'Activo'),
+(8, 'Valentina Hernandez', 108080, '2021-08-11', '2023-09-10', NULL, 'Activo'),
+(9, 'Felipe Vasquez', 109090, '2021-09-30', '2023-10-15', NULL, 'Activo'),
+(10, 'Emilia Paredes', 110101, '2021-10-20', '2023-11-01', NULL, 'Activo');
+
+-- Insertar datos en Alergias
+INSERT INTO Alergias (noMatricula, ingredienteId, observaciones) VALUES
+(1, 1, 'Requiere leche sin lactosa'),
+(2, 3, 'No puede comer pollo'),
+(3, 5, 'Alérgico a verduras'),
+(4, 7, 'No puede comer pasta'),
+(5, 2, 'Requiere pan sin gluten'),
+(6, 6, 'Frutas prohibidas'),
+(7, 8, 'Sin huevo en su dieta'),
+(8, 10, 'No puede comer carne'),
+(9, 12, 'Alérgico al tomate'),
+(10, 13, 'Sin pepino en su dieta');
+
+-- Insertar datos en Consumos
+INSERT INTO Consumos (noMatricula, mes, costoPorComida) VALUES
+(1, 1, 5.000),
+(2, 1, 5.500),
+(3, 1, 4.750),
+(4, 1, 6.000),
+(5, 1, 4.800),
+(6, 1, 5.250),
+(7, 1, 5.100),
+(8, 1, 4.900),
+(9, 1, 5.000),
+(10, 1, 5.200);
+
+-- Insertar datos en MenuComidas
+INSERT INTO MenuComidas (nombreMenu) VALUES
+('Menu 1'),
+('Menu 2'),
+('Menu 3'),
+('Menu 4'),
+('Menu 5'),
+('Menu 6'),
+('Menu 7'),
+('Menu 8'),
+('Menu 9'),
+('Menu 10');
+
+-- Insertar datos en Platos
+INSERT INTO Platos (nombrePlato, noMenu) VALUES
+('Plato 1', 1),
+('Plato 2', 2),
+('Plato 3', 3),
+('Plato 4', 4),
+('Plato 5', 5),
+('Plato 6', 6),
+('Plato 7', 7),
+('Plato 8', 8),
+('Plato 9', 9),
+('Plato 10', 10);
+
+-- Insertar datos en IngredientesPlatos
+INSERT INTO IngredientesPlatos (platoId, ingredienteId) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7),
+(8, 8),
+(9, 9),
+(10, 10);
+
+-- Insertar datos en RegistroComidas
+INSERT INTO RegistroComidas (fecha, noMenu, noMatricula) VALUES
+('2024-12-01', 1, 1),
+('2024-12-01', 2, 2),
+('2024-12-01', 3, 3),
+('2024-12-01', 4, 4),
+('2024-12-01', 5, 5),
+('2024-12-01', 6, 6),
+('2024-12-01', 7, 7),
+('2024-12-01', 8, 8),
+('2024-12-01', 9, 9),
+('2024-12-01', 10, 10);
 
 -- Insertar datos en TelefonosAcudiente
 INSERT INTO TelefonosAcudiente (cedula, telefono) VALUES
-(123456789, '3001234567'),
-(987654321, '3023456789'),
-(111222333, '3034567890'),
-(444555666, '3045678901'),
-(777888999, '3056789012');
+(101010, '3001234567'),
+(102020, '3002345678'),
+(103030, '3003456789'),
+(104040, '3004567890'),
+(105050, '3005678901'),
+(106060, '3006789012'),
+(107070, '3007890123'),
+(108080, '3008901234'),
+(109090, '3009012345'),
+(110101, '3000123456');
 
 -- Insertar datos en PagosCotizantes
 INSERT INTO PagosCotizantes (cedula, noMatricula, valorPago, fechaPago, estado) VALUES
-(123456789, 1001, 150.00, '2024-10-01', 'Pagado'),
-(987654321, 1002, 150.00, '2024-10-01', 'Pagado'),
-(111222333, 1003, 150.00, '2024-10-01', 'Pendiente'),
-(123456789, 1004, 150.00, '2024-11-01', 'Pagado'),
-(987654321, 1005, 150.00, '2024-11-01', 'Pendiente'),
-(111222333, 1006, 150.00, '2024-12-01', 'Pagado'),
-(987654321, 1007, 200.00, '2024-12-05', 'Pagado'),
-(123456789, 1008, 200.00, '2024-12-05', 'Pendiente'),
-(111222333, 1009, 180.00, '2024-12-10', 'Pagado'),
-(123456789, 1010, 180.00, '2024-12-10', 'Pendiente');
+(101010, 1, 100.00, '2024-12-01', 'Pagado'),
+(102020, 2, 150.00, '2024-12-01', 'Pendiente'),
+(103030, 3, 120.00, '2024-12-01', 'Pagado'),
+(104040, 4, 130.00, '2024-12-01', 'Pendiente'),
+(105050, 5, 110.00, '2024-12-01', 'Pagado'),
+(106060, 6, 140.00, '2024-12-01', 'Pendiente'),
+(107070, 7, 125.00, '2024-12-01', 'Pagado'),
+(108080, 8, 135.00, '2024-12-01', 'Pendiente'),
+(109090, 9, 115.00, '2024-12-01', 'Pagado'),
+(110101, 10, 145.00, '2024-12-01', 'Pendiente');

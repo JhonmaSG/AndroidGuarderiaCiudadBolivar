@@ -38,13 +38,13 @@ class MainActivity_usuario: AppCompatActivity() {
             Log.e("MainActivity", "Error al inicializar la actividad: ${e.message}")
             // Aquí podrías establecer valores por defecto o realizar otras acciones
         }
-/*
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main_usuario)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        /*
+                ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main_usuario)) { v, insets ->
+                    val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+                    v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+                    insets
 
-        }**/
+                }**/
     }
 
     @RequiresApi(Build.VERSION_CODES.Q)
@@ -60,7 +60,7 @@ class MainActivity_usuario: AppCompatActivity() {
                     }
                     return@OnNavigationItemSelectedListener true
                 }
-
+                //niños
                 R.id.ver_inscripciones -> {
                     // Reemplazar el fragmento con el menú de inscripciones
                     supportFragmentManager.commit {
@@ -70,7 +70,7 @@ class MainActivity_usuario: AppCompatActivity() {
                     }
                     return@OnNavigationItemSelectedListener true
                 }
-
+                //Reportes
                 R.id.ver_historial -> {
                     // Reemplazar el fragmento con el fragmento de pagos
                     supportFragmentManager.commit {

@@ -37,15 +37,6 @@
             android:textSize="18sp"
             android:layout_alignParentTop="true" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Acciones"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true" />
-
     </RelativeLayout>
 
 </LinearLayout>

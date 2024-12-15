@@ -1,14 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ver_reportes">
+    android:orientation="vertical"
+    android:padding="16dp">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- Título del fragmento -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/tvTituloReportes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Generar Reporte"
+        android:textColor="#4ED6DB"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp" />
 
-</FrameLayout>
+    <!-- Campo para ingresar el número de matrícula -->
+    <EditText
+        android:id="@+id/etNumeroMatricula"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Número de Matrícula"
+        android:inputType="number"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Campo para ingresar el nombre del estudiante -->
+    <EditText
+        android:id="@+id/etNombreEstudiante"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre del Estudiante"
+        android:inputType="textPersonName"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Botón para generar el reporte -->
+    <Button
+        android:id="@+id/btnGenerarReporte"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#4ED6DB"
+        android:text="Generar Reporte" />
+
+    <!-- TextViews para mostrar los datos del niño, acudiente y alergias -->
+    <TextView
+        android:id="@+id/tvDatosReporte"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Datos del Reporte aparecerán aquí"
+        android:textSize="16sp"
+        android:layout_marginTop="24dp" />
+
+    <!-- Botón para generar el PDF -->
+    <Button
+        android:id="@+id/btnGenerarPDF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Generar PDF"
+        android:visibility="gone"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>

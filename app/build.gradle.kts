@@ -51,7 +51,10 @@ dependencies {
     implementation ("com.google.android.material:material:1.6.1")
     implementation("androidx.appcompat:appcompat:1.5.1")
     implementation("com.android.volley:volley:1.2.1")
+    implementation ("androidx.recyclerview:recyclerview:1.2.1")
     implementation(libs.volley)
+    implementation(libs.androidx.espresso.core)
+    implementation(libs.androidx.recyclerview)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
