@@ -34,6 +34,9 @@ class ver_reportes : Fragment() {
     private var datosAcudiente = ""
     private var datosAlergias = ""
 
+    private var noMatricula = "";
+    private var nomNino = ""
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -68,6 +71,7 @@ class ver_reportes : Fragment() {
         }
 
         btnGenerarPDF.setOnClickListener {
+            Log.d("ver_reportes", "El botón fue presionado, llamando a generarPDF()")
             generarPDF()
         }
     }
@@ -83,23 +87,33 @@ class ver_reportes : Fragment() {
                     if (jsonResponse.getBoolean("success")) {
                         val data = jsonResponse.getJSONArray("data").getJSONObject(0)
 
-                        // Mostrar los datos en el TextView
-                        datosReporte = """
+                        // Dividir la información
+                        nomNino = data.getString("nombreNino")
+                        noMatricula = data.getString("noMatricula")
+
+                        datosNino = """
                         Nombre del Niño: ${data.getString("nombreNino")}
                         Matrícula: ${data.getString("noMatricula")}
                         Fecha de Nacimiento: ${data.getString("fechaNacimiento")}
                         Fecha de Ingreso: ${data.getString("fechaIngreso")}
                         Fecha de Fin: ${data.getString("fechaFin")}
                         Estado: ${data.getString("estadoNino")}
+                    """.trimIndent()
+
+                        datosAcudiente = """
                         Nombre del Acudiente: ${data.getString("nombreAcudiente")}
                         Dirección: ${data.getString("direccion")}
                         Parentesco: ${data.getString("parentesco")}
-                        Número de Cuenta: ${data.getString("numeroCuenta")}
                         Teléfono: ${data.getString("telefono")}
+                    """.trimIndent()
+
+                        datosAlergias = """
                         Alergias: ${data.getString("alergiasObservaciones")}
                         Ingrediente Alergénico: ${data.getString("alergiaIngrediente")}
                     """.trimIndent()
-                        tvDatosReporte.text = datosReporte
+
+                        // Mostrar los datos en el TextView
+                        tvDatosReporte.text = "Datos del Niño: \n$datosNino\n\nDatos del Acudiente: \n$datosAcudiente\n\nAlergias: \n$datosAlergias"
 
                         // Hacer visible el botón para generar el PDF
                         btnGenerarPDF.visibility = View.VISIBLE
@@ -133,6 +147,7 @@ class ver_reportes : Fragment() {
         Volley.newRequestQueue(context).add(stringRequest)
     }
 
+
     // Método para generar el PDF
     private fun generarPDF() {
         try {
@@ -148,19 +163,57 @@ class ver_reportes : Fragment() {
             paint.textSize = 12f
             paint.isAntiAlias = true
 
-            // Escribir los datos en el PDF
+            // Función para dibujar texto con salto de línea
+            fun drawTextWithLineBreaks(text: String, startX: Float, startY: Float, canvas: Canvas, paint: Paint): Float {
+                val lines = text.split("\n") // Dividir el texto en líneas
+                var yPosition = startY
+                for (line in lines) {
+                    canvas.drawText(line, startX, yPosition, paint)
+                    yPosition += 20f // Espacio entre líneas
+                }
+                return yPosition // Retorna la nueva posición Y después de escribir todas las líneas
+            }
+
+            // Escribir el título
             var yPosition = 20f
-            canvas.drawText("Reporte de Niño", 20f, yPosition, paint)
+            var xPosition = 120f
+            canvas.drawText("REPORTE", xPosition, yPosition, paint)
+            yPosition += 40f // Espacio después del título
+
+            // Escribir los datos del niño
+            canvas.drawText("Datos del Niño", xPosition-10, yPosition, paint)
             yPosition += 20f
 
-            // Usar los datosReporte almacenados
-            canvas.drawText(datosReporte, 20f, yPosition, paint)
+            // Llamar a la función para imprimir los datos del niño con saltos de línea
+            yPosition = drawTextWithLineBreaks(datosNino, 20f, yPosition, canvas, paint)
+            yPosition += 40f  // Espacio entre secciones
+
+            // Escribir los datos del acudiente
+            canvas.drawText("Datos del Acudiente", xPosition-20, yPosition, paint)
+            yPosition += 20f
+
+            // Llamar a la función para imprimir los datos del acudiente
+            yPosition = drawTextWithLineBreaks(datosAcudiente, 20f, yPosition, canvas, paint)
+            yPosition += 40f  // Espacio entre secciones
+
+            // Escribir los datos de alergias
+            canvas.drawText("Alergias", xPosition, yPosition, paint)
+            yPosition += 20f
+
+            // Llamar a la función para imprimir los datos de alergias
+            yPosition = drawTextWithLineBreaks(datosAlergias, 20f, yPosition, canvas, paint)
 
             // Terminar la página
             pdfDocument.finishPage(page)
 
-            // Guardar el PDF en el almacenamiento interno
-            val filePath = File(Environment.getExternalStorageDirectory(), "reporte_nino.pdf")
+            // Obtener el directorio de "Descargas" en el almacenamiento externo
+            val downloadsDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+
+            val nombreArchivo = "$noMatricula-$nomNino.pdf"
+
+            val filePath = File(downloadsDirectory, "$nombreArchivo.pdf")
+
+            // Guardar el PDF en el almacenamiento externo
             pdfDocument.writeTo(FileOutputStream(filePath))
 
             // Mostrar un mensaje indicando que el PDF se generó con éxito
@@ -168,6 +221,7 @@ class ver_reportes : Fragment() {
 
             // Cerrar el documento
             pdfDocument.close()
+
         } catch (e: IOException) {
             Log.e("ver_reportes", "Error al generar el PDF: ${e.message}")
             Toast.makeText(context, "Error al generar el PDF", Toast.LENGTH_SHORT).show()
