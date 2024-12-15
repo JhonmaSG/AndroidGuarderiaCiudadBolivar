@@ -25,7 +25,7 @@
             android:layout_gravity="bottom"
             android:background="@drawable/rounded_nav_background"
             android:paddingTop="8dp"
-            app:itemBackground="@drawable/menu_item_background"
+            app:itemBackground="@drawable/menu_item_background_usuario"
             app:itemIconTint="@color/black"
             app:menu="@menu/navegacion_menu_usuarios">
 

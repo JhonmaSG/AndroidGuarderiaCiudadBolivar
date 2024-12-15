@@ -24,9 +24,9 @@
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:layout_gravity="bottom"
-        android:background="@drawable/rounded_nav_background"
+        android:background="#CC6CE7"
         android:paddingTop="8dp"
-        app:itemBackground="@drawable/menu_item_background"
+        app:itemBackground="@drawable/menu_item_background_admin"
         app:itemIconTint="@color/black"
         app:menu="@menu/navegation_menu_admin">
 

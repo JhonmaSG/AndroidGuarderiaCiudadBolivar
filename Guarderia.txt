@@ -47,7 +47,7 @@ CREATE TABLE Ninos (
     fechaIngreso DATE,
     fechaFin DATE,
     estado VARCHAR(20),
-    FOREIGN KEY (acudienteCedula ) REFERENCES Acudiente(cedula)
+    FOREIGN KEY (acudienteCedula) REFERENCES Acudiente(cedula)
 );
 
 -- Crear la tabla Alergias
@@ -69,17 +69,17 @@ CREATE TABLE Consumos (
     FOREIGN KEY (noMatricula) REFERENCES Ninos(noMatricula)
 );
 
--- Crear la tabla MenuComidas
+-- Crear la tabla MenusComidas (nombre general del menú)
 CREATE TABLE MenuComidas (
     noMenu INT AUTO_INCREMENT PRIMARY KEY,
     nombreMenu VARCHAR(100) NOT NULL
 );
 
--- Crear la tabla Platos
+-- Crear la tabla Platos (cada plato pertenece a un menú)
 CREATE TABLE Platos (
     platoId INT AUTO_INCREMENT PRIMARY KEY,
     nombrePlato VARCHAR(100) NOT NULL,
-    noMenu INT,
+    noMenu INT,  -- Relaciona los platos con los menús
     FOREIGN KEY (noMenu) REFERENCES MenuComidas(noMenu)
 );
 
@@ -127,7 +127,7 @@ INSERT INTO Roles (nombreRol) VALUES
 ('Profesor'), 
 ('Administrador');
 
--- Insertar datos en Usuarios (no cambios en estos registros)
+-- Insertar datos en Usuarios
 INSERT INTO Usuarios (nombreUsuario, contrasena, rolId, dni, nombres, apellidos, pregunta, respuesta, ultimoCambio) VALUES
 ('jmartinez', '123', 1, 11223344, 'jhon', 'martinez', 'Mascota favorita', 'manuelita','2024-11-28'),
 ('asanchez', '456', 1, 123123123, 'andrea', 'sanchez', 'Lugar favorito', 'barcelona','2024-01-28'),
@@ -183,79 +183,83 @@ INSERT INTO Ninos (noMatricula, nombre, acudienteCedula, fechaNacimiento, fechaI
 INSERT INTO Alergias (noMatricula, ingredienteId, observaciones) VALUES
 (1, 1, 'Requiere leche sin lactosa'),
 (2, 3, 'No puede comer pollo'),
-(3, 5, 'Alérgico a verduras'),
-(4, 7, 'No puede comer pasta'),
-(5, 2, 'Requiere pan sin gluten'),
-(6, 6, 'Frutas prohibidas'),
-(7, 8, 'Sin huevo en su dieta'),
-(8, 10, 'No puede comer carne'),
-(9, 12, 'Alérgico al tomate'),
-(10, 13, 'Sin pepino en su dieta');
+(3, 6, 'Alérgico a las verduras frescas'),
+(4, 7, 'Sin pasta con gluten'),
+(5, 9, 'No queso curado'),
+(6, 5, 'Alergias a las patatas fritas'),
+(7, 10, 'Le gusta el tomate');
 
 -- Insertar datos en Consumos
 INSERT INTO Consumos (noMatricula, mes, costoPorComida) VALUES
-(1, 1, 5.000),
-(2, 1, 5.500),
-(3, 1, 4.750),
-(4, 1, 6.000),
-(5, 1, 4.800),
-(6, 1, 5.250),
-(7, 1, 5.100),
-(8, 1, 4.900),
-(9, 1, 5.000),
-(10, 1, 5.200);
+(1, 1, 2.5),
+(2, 1, 3.0),
+(3, 2, 2.7),
+(4, 3, 3.2),
+(5, 3, 2.9),
+(6, 4, 3.5),
+(7, 4, 3.1),
+(8, 5, 3.0),
+(9, 6, 2.8),
+(10, 7, 3.0);
 
--- Insertar datos en MenuComidas
+-- Insertar datos en Menus
 INSERT INTO MenuComidas (nombreMenu) VALUES
-('Menu 1'),
-('Menu 2'),
-('Menu 3'),
-('Menu 4'),
-('Menu 5'),
-('Menu 6'),
-('Menu 7'),
-('Menu 8'),
-('Menu 9'),
-('Menu 10');
+('Menú de la semana'),
+('Menú vegano'),
+('Menú infantil'),
+('Menú saludable'),
+('Menú especial'),
+('Menú de Navidad');
 
 -- Insertar datos en Platos
-INSERT INTO Platos (nombrePlato, noMenu) VALUES
-('Plato 1', 1),
-('Plato 2', 2),
-('Plato 3', 3),
-('Plato 4', 4),
-('Plato 5', 5),
-('Plato 6', 6),
-('Plato 7', 7),
-('Plato 8', 8),
-('Plato 9', 9),
-('Plato 10', 10);
+INSERT INTO Platos(nombrePlato, noMenu) VALUES
+('Arroz con Pollo', 1),
+('Ensalada de Quinoa', 2),
+('Pasta con Albóndigas', 3),
+('Sopa de Verduras', 4),
+('Pechuga de Pollo a la Plancha', 5),
+('Tarta de Frutas', 6),
+('Pan con Aguacate', 2),
+('Hamburguesa de Pavo', 3),
+('Puré de Papas', 4),
+('Pizza Vegetariana', 2),
+('Tacos de Carne', 3),
+('Arroz con Verduras', 4);
 
 -- Insertar datos en IngredientesPlatos
 INSERT INTO IngredientesPlatos (platoId, ingredienteId) VALUES
-(1, 1),
-(2, 2),
-(3, 3),
-(4, 4),
-(5, 5),
-(6, 6),
-(7, 7),
-(8, 8),
-(9, 9),
-(10, 10);
+(1, 3),  -- Arroz con Pollo tiene Pollo
+(1, 4),  -- Arroz con Pollo tiene Arroz
+(2, 5),  -- Ensalada de Quinoa tiene Verduras
+(2, 7),  -- Ensalada de Quinoa tiene Quinoa
+(3, 4),  -- Pasta con Albóndigas tiene Pasta
+(3, 8),  -- Pasta con Albóndigas tiene Albóndigas
+(4, 5),  -- Sopa de Verduras tiene Verduras
+(5, 3),  -- Pechuga de Pollo a la Plancha tiene Pollo
+(5, 9),  -- Pechuga de Pollo a la Plancha tiene Queso
+(6, 6),  -- Tarta de Frutas tiene Frutas
+(7, 2),  -- Pan con Aguacate tiene Pan
+(7, 5),  -- Pan con Aguacate tiene Aguacate
+(8, 3),  -- Hamburguesa de Pavo tiene Carne
+(8, 6),  -- Hamburguesa de Pavo tiene Queso
+(9, 10), -- Puré de Papas tiene Papas
+(10, 2), -- Pizza Vegetariana tiene Tomate
+(10, 5), -- Pizza Vegetariana tiene Queso
+(11, 3), -- Tacos de Carne tiene Carne
+(12, 5); -- Pizza Vegetariana tiene Tomate
 
 -- Insertar datos en RegistroComidas
 INSERT INTO RegistroComidas (fecha, noMenu, noMatricula) VALUES
 ('2024-12-01', 1, 1),
-('2024-12-01', 2, 2),
-('2024-12-01', 3, 3),
-('2024-12-01', 4, 4),
-('2024-12-01', 5, 5),
-('2024-12-01', 6, 6),
-('2024-12-01', 7, 7),
-('2024-12-01', 8, 8),
-('2024-12-01', 9, 9),
-('2024-12-01', 10, 10);
+('2024-12-01', 1, 2),
+('2024-12-02', 2, 3),
+('2024-12-02', 2, 4),
+('2024-12-03', 3, 5),
+('2024-12-03', 3, 6),
+('2024-12-04', 4, 7),
+('2024-12-04', 4, 8),
+('2024-12-05', 5, 9),
+('2024-12-05', 5, 10);
 
 -- Insertar datos en TelefonosAcudiente
 INSERT INTO TelefonosAcudiente (cedula, telefono) VALUES
@@ -272,13 +276,13 @@ INSERT INTO TelefonosAcudiente (cedula, telefono) VALUES
 
 -- Insertar datos en PagosCotizantes
 INSERT INTO PagosCotizantes (cedula, noMatricula, valorPago, fechaPago, estado) VALUES
-(101010, 1, 100.00, '2024-12-01', 'Pagado'),
-(102020, 2, 150.00, '2024-12-01', 'Pendiente'),
-(103030, 3, 120.00, '2024-12-01', 'Pagado'),
-(104040, 4, 130.00, '2024-12-01', 'Pendiente'),
-(105050, 5, 110.00, '2024-12-01', 'Pagado'),
-(106060, 6, 140.00, '2024-12-01', 'Pendiente'),
-(107070, 7, 125.00, '2024-12-01', 'Pagado'),
-(108080, 8, 135.00, '2024-12-01', 'Pendiente'),
-(109090, 9, 115.00, '2024-12-01', 'Pagado'),
-(110101, 10, 145.00, '2024-12-01', 'Pendiente');
+(101010, 1, 50.0, '2024-12-01', 'Pagado'),
+(102020, 2, 60.0, '2024-12-01', 'Pendiente'),
+(103030, 3, 55.0, '2024-12-01', 'Pagado'),
+(104040, 4, 70.0, '2024-12-01', 'Pagado'),
+(105050, 5, 65.0, '2024-12-01', 'Pendiente'),
+(106060, 6, 75.0, '2024-12-01', 'Pagado'),
+(107070, 7, 80.0, '2024-12-01', 'Pendiente'),
+(108080, 8, 50.0, '2024-12-01', 'Pagado'),
+(109090, 9, 60.0, '2024-12-01', 'Pendiente'),
+(110101, 10, 55.0, '2024-12-01', 'Pagado');

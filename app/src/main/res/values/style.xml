@@ -4,7 +4,7 @@
         <item name="android:background">@drawable/rounded_popup_background</item>
     </style>
     <style name="CustomTextStyle">
-        <item name="android:background">@drawable/menu_item_background</item>
+        <item name="android:background">@drawable/menu_item_background_admin</item>
         <item name="android:textColor">@color/white</item>
         <item name="itemTextColor">@color/white</item>
         <item name="itemIconTint">@color/white</item>
