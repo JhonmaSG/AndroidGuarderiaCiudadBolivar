@@ -68,7 +68,7 @@ class MainActivity_admin : AppCompatActivity() {
                 }
 
                 R.id.inscripciones -> {
-                    // Reemplazar el fragmento con el menú de comidas
+                    // Reemplazar el fragmento con el menú de inscripciones
                     supportFragmentManager.commit {
                         replace<menu_inscripciones_fragment>(R.id.fragment_conteiner_admin)
                         setReorderingAllowed(true)
@@ -119,7 +119,7 @@ class MainActivity_admin : AppCompatActivity() {
                 try {
                     when (menuItem.itemId) {
                         R.id.crear_historial -> {
-                            // Reemplazar el fragmento con el menú de comidas
+                            // Reemplazar el fragmento con reportes
                             supportFragmentManager.commit {
                                 replace<historial_fragment>(R.id.fragment_conteiner_admin)
                                 setReorderingAllowed(true)
