@@ -10,6 +10,7 @@
         android:id="@+id/tvTituloReporte"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="15sp"
         android:text="REPORTES PARAMETRIZABLES"
         android:textSize="22sp"
         android:textColor="#2DB1B6"
@@ -21,6 +22,7 @@
         android:id="@+id/spinner_tipo_reporte"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="15sp"
         android:entries="@array/tipos_reportes"
         android:layout_marginBottom="16dp" />
 

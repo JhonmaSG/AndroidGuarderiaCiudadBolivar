@@ -47,7 +47,7 @@ class ver_reportes_admin : Fragment(R.layout.fragment_reportes_admin) {
             // Verificar si las fechas están vacías
             if (fechaInicio.isEmpty() || fechaFin.isEmpty()) {
                 Log.e("VerReportesAdminFragment", "Fechas vacías, por favor ingrese las fechas.")
-                Toast.makeText(requireContext(), "Por favor, ingrese las fechas.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Por favor, ingrese las fechas.", Toast.LENGTH_LONG).show()
             } else {
                 Log.d("VerReportesAdminFragment", "Fechas seleccionadas: $fechaInicio - $fechaFin")
                 when (tipoReporte) {
@@ -65,7 +65,7 @@ class ver_reportes_admin : Fragment(R.layout.fragment_reportes_admin) {
                     }
                     else -> {
                         Log.e("VerReportesAdminFragment", "Tipo de reporte no válido.")
-                        Toast.makeText(requireContext(), "Selecciona un reporte válido.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "Selecciona un reporte válido.", Toast.LENGTH_LONG).show()
                     }
                 }
             }
@@ -88,11 +88,11 @@ class ver_reportes_admin : Fragment(R.layout.fragment_reportes_admin) {
                             generarPDF(data, tipoReporte)
                         }
                     } else {
-                        Toast.makeText(requireContext(), "Error en el reporte.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "Error en el reporte.", Toast.LENGTH_LONG).show()
                     }
                 } catch (e: JSONException) {
                     Log.e("VerReportesAdminFragment", "Error en el parsing JSON: ${e.message}")
-                    Toast.makeText(requireContext(), "Error al procesar la respuesta.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Error al procesar la respuesta.", Toast.LENGTH_LONG).show()
                 }
             },
             { error ->
@@ -131,17 +131,31 @@ class ver_reportes_admin : Fragment(R.layout.fragment_reportes_admin) {
             for (i in 0 until data.length()) {
                 val row = data.getJSONObject(i)
                 val line = buildString {
-                    append("Fecha: ${row.getString("fechaPago")}, ")
-
-                    // Ahora usamos el campo "valorPago"
-                    if (row.has("valorPago")) {
-                        append("Valor: ${row.getDouble("valorPago")}, ")
-                    } else {
-                        append("Valor no disponible, ")
+                    // Controlar el contenido de acuerdo al tipo de reporte
+                    when (tipoReporte) {
+                        "Reporte de Consumos" -> {
+                            // Reporte de Consumos: usar fechaConsumo y CostoPorComida
+                            append("Fecha de Consumo: ${row.getString("fechaConsumo")}, ")
+                            append("Costo por comida: ${row.getDouble("CostoPorComida")}, ")
+                        }
+                        "Reporte de Pagos" -> {
+                            // Reporte de Pagos: usar fechaPago y valorPago
+                            append("Fecha de Pago: ${row.getString("fechaPago")}, ")
+                            append("Valor de Pago: ${row.getDouble("valorPago")}, ")
+                        }
+                        "Reporte de Alergias" -> {
+                            // Reporte de Alergias: incluir fecha_alergia y alergiaIngrediente
+                            append("Fecha Consumo: ${row.getString("FechaConsumo")}, ")
+                            append("Observaciones: ${row.getString("Observaciones")}, ")
+                            append("Menú: ${row.getString("NombreMenu")}, ")
+                            append("Plato: ${row.getString("NombrePlato")}, ")
+                            append("Niño: ${row.getString("NombreNiño")}")
+                        }
+                        else -> {
+                            // Si el tipo de reporte no es reconocido, mostrar un mensaje de error
+                            append("Tipo de reporte no válido. ")
+                        }
                     }
-
-                    append("Acudiente: ${row.getString("nombreAcudiente")}, ")
-                    append("Niño: ${row.getString("nombreNino")}")
                 }
                 document.add(Paragraph(line))
             }
@@ -149,13 +163,14 @@ class ver_reportes_admin : Fragment(R.layout.fragment_reportes_admin) {
             // Cerrar el documento
             document.close()
 
-            Toast.makeText(requireContext(), "Reporte generado en Descargas", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Reporte generado en Descargas", Toast.LENGTH_LONG).show()
 
         } catch (e: Exception) {
             Log.e("VerReportesAdminFragment", "Error al generar el PDF: ${e.message}")
-            Toast.makeText(requireContext(), "Error al generar el PDF: ${e.message}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Error al generar el PDF: ${e.message}", Toast.LENGTH_LONG).show()
         }
     }
+
 
     // Método para verificar permisos (implementación sencilla)
     private fun checkPermissions(): Boolean {

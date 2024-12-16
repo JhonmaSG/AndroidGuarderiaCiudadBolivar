@@ -1,19 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".pagos_fragment">
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"> <!-- Centrado de los componentes dentro del layout -->
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- Título del Fragment -->
     <TextView
+        android:id="@+id/tvTituloReporte"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="menu pagos"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content"
+        android:paddingBottom="100sp"
+        android:text="PAGOS"
+        android:textSize="22sp"
+        android:textColor="#2DB1B6"
+        android:gravity="center"
+        android:textStyle="bold" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Texto que se actualizará cuando el botón sea presionado -->
+    <TextView
+        android:id="@+id/txtInfoPagos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Para completar los Pagos"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        android:layout_marginBottom="20dp"/>
+
+    <!-- Botón para realizar la acción -->
+    <Button
+        android:id="@+id/btnVerPagos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#44AA44"
+        android:text="Presiona aqui"
+        android:padding="10dp"
+        android:textSize="16sp"/>
+</LinearLayout>

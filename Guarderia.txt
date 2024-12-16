@@ -133,7 +133,7 @@ INSERT INTO Usuarios (nombreUsuario, contrasena, rolId, dni, nombres, apellidos,
 ('jmartinez', '123', 1, 11223344, 'jhon', 'martinez', 'Mascota favorita', 'manuelita','2024-11-28'),
 ('asanchez', '456', 1, 123123123, 'andrea', 'sanchez', 'Lugar favorito', 'barcelona','2024-01-28'),
 ('mlopez', '789', 1, 111111111, 'maria', 'lopez', 'Comida favorita', 'pasta','2023-11-20'),
-('rgarcia', 'admin123', 2, 222222222, 'rocio', 'garcia', 'Pelicula favorita', 'la llegada','2024-11-01'),
+('rgarcia', '123', 2, 222222222, 'rocio', 'garcia', 'Pelicula favorita', 'la llegada','2024-11-01'),
 ('gfernandez', 'admin456', 2, 333333333, 'gabriel', 'fernandez', 'Cosa favorita', 'carro','2023-11-01');
 
 -- Insertar datos en Ingredientes
@@ -277,7 +277,7 @@ INSERT INTO TelefonosAcudiente (cedula, telefono) VALUES
 
 -- Insertar datos en PagosCotizantes
 INSERT INTO PagosCotizantes (cedula, noMatricula, valorPago, fechaPago, estado) VALUES
-(101010, 1, 5000.000, '2024-12-01', 'Pagado'),
+(101010, 1, 500.000, '2024-12-01', 'Pagado'),
 (102020, 2, 600.000, '2024-12-01', 'Pendiente'),
 (103030, 3, 550.000, '2024-12-01', 'Pagado'),
 (104040, 4, 700.000, '2024-12-01', 'Pagado'),
