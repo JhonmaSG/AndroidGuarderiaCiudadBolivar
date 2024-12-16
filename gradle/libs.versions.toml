@@ -14,6 +14,7 @@ constraintlayout = "2.1.4"
 
 volley = "1.2.1"
 recyclerview = "1.3.2"
+uiTextAndroid = "1.7.6"
 
 
 [libraries]
@@ -28,6 +29,7 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 
 volley = { group = "com.android.volley", name = "volley", version.ref = "volley" }
 androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
+androidx-ui-text-android = { group = "androidx.compose.ui", name = "ui-text-android", version.ref = "uiTextAndroid" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

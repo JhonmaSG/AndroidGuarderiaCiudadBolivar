@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Título del Fragment -->
+    <TextView
+        android:id="@+id/tvTituloReporte"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="REPORTES PARAMETRIZABLES"
+        android:textSize="22sp"
+        android:textColor="#2DB1B6"
+        android:gravity="center"
+        android:textStyle="bold" />
+
+    <!-- Spinner para seleccionar el tipo de reporte -->
+    <Spinner
+        android:id="@+id/spinner_tipo_reporte"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/tipos_reportes"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Campos de Fecha -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha de Inicio"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/etFechaInicio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="yyyy-mm-dd"
+        android:inputType="date"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha de Fin"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/etFechaFin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="yyyy-mm-dd"
+        android:inputType="date"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Botón para generar reporte -->
+    <Button
+        android:id="@+id/btn_generar_reporte"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Generar Reporte"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Texto para mostrar resultado -->
+    <TextView
+        android:id="@+id/tv_resultado_reporte"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_marginBottom="20dp"
+        android:gravity="center" />
+
+</LinearLayout>
+

@@ -121,7 +121,7 @@ class MainActivity_admin : AppCompatActivity() {
                         R.id.crear_historial -> {
                             // Reemplazar el fragmento con reportes
                             supportFragmentManager.commit {
-                                replace<historial_fragment>(R.id.fragment_conteiner_admin)
+                                replace<ver_reportes_admin>(R.id.fragment_conteiner_admin)
                                 setReorderingAllowed(true)
                                 addToBackStack("replacement")
                             }
