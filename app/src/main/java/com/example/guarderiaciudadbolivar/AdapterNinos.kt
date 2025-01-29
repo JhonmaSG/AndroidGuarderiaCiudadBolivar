@@ -10,14 +10,14 @@ import android.widget.TextView
 class AdapterNinos(
     context: Context,
     private val listaNinos: List<Nino>
-) : ArrayAdapter<Nino>(context, R.layout.list_item_nino, listaNinos) {
+) : ArrayAdapter<Nino>(context, R.layout.item_nino, listaNinos) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view = convertView ?: LayoutInflater.from(context)
-            .inflate(R.layout.list_item_nino, parent, false)
+            .inflate(R.layout.item_nino, parent, false)
 
-        val txtNoMatricula = view.findViewById<TextView>(R.id.txtNoMatricula)
-        val txtNombre = view.findViewById<TextView>(R.id.txtNombre)
+        val txtNoMatricula = view.findViewById<TextView>(R.id.tvNoMatricula)
+        val txtNombre = view.findViewById<TextView>(R.id.tvNombre)
 
         val nino = listaNinos[position]
 

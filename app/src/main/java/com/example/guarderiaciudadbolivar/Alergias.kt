@@ -1,7 +1,7 @@
 package com.example.guarderiaciudadbolivar
 
 data class Alergias(
-    val noMatricula: Int,
-    val ingredienteId: Int,
+    val noMatricula: String,
+    val ingredienteId: String,
     val observaciones: String
 )

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -10,42 +9,45 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Editar Niño"
-        android:textSize="22sp"
-        android:textColor="#2DB1B6"
+        android:textSize="24sp"
+        android:textStyle="bold"
         android:gravity="center"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="24dp"/>
 
     <EditText
-        android:id="@+id/etEditNombre"
+        android:id="@+id/editNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nombre"
-        android:inputType="text"/>
+        android:layout_marginBottom="16dp"/>
 
     <EditText
-        android:id="@+id/etEditFechaNacimiento"
+        android:id="@+id/editFechaNacimiento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Fecha Nacimiento"
-        android:inputType="date"/>
+        android:hint="Fecha de Nacimiento"
+        android:inputType="date"
+        android:layout_marginBottom="16dp"/>
 
     <EditText
-        android:id="@+id/etEditFechaIngreso"
+        android:id="@+id/editFechaIngreso"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Fecha Ingreso"
-        android:inputType="date"/>
+        android:hint="Fecha de Ingreso"
+        android:inputType="date"
+        android:layout_marginBottom="16dp"/>
 
-    <Spinner
-        android:id="@+id/spinnerEditEstado"
+    <EditText
+        android:id="@+id/editEstado"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Estado"/>
+        android:hint="Estado"
+        android:layout_marginBottom="16dp"/>
 
     <Button
-        android:id="@+id/btnActualizar"
+        android:id="@+id/btnGuardar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Actualizar"
-        android:layout_marginTop="20dp"/>
+        android:text="Guardar Cambios"/>
+
 </LinearLayout>

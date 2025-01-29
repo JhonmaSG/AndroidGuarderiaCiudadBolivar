@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtCedula"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cédula"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:id="@+id/txtNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:id="@+id/txtDireccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dirección"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:id="@+id/txtParentesco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Parentesco"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:id="@+id/txtNumeroCuenta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Número de Cuenta"
+            android:layout_marginBottom="10dp" />
+    </LinearLayout>
+</ScrollView>

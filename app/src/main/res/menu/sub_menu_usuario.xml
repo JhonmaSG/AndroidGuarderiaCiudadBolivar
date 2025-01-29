@@ -9,6 +9,13 @@
         android:title="Ingredientes"
         android:icon="@drawable/baseline_restaurant_menu_24"/>
     <item
+        android:id="@+id/alergias"
+        android:title="Alergias"
+        android:icon="@drawable/baseline_restaurant_menu_24"/>
+    <item
+        android:id="@+id/acudientes"
+        android:title="Acudiente" />
+    <item
         android:id="@+id/creditos"
         android:title="Creditos"
         android:icon="@drawable/clientela"/>

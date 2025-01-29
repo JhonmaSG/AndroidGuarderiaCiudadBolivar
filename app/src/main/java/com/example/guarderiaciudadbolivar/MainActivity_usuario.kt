@@ -1,5 +1,7 @@
 package com.example.guarderiaciudadbolivar
 
+
+//import AcudienteFragment
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
@@ -64,7 +66,7 @@ class MainActivity_usuario: AppCompatActivity() {
                 R.id.ver_inscripciones -> {
                     // Reemplazar el fragmento con el menú de inscripciones
                     supportFragmentManager.commit {
-                        replace<menu_ninos_fragment>(R.id.fragment_conteiner_usuario)
+                        replace<NinoFragment>(R.id.fragment_conteiner_usuario)
                         setReorderingAllowed(true)
                         addToBackStack("replacement")
                     }
@@ -126,24 +128,21 @@ class MainActivity_usuario: AppCompatActivity() {
                                 addToBackStack("replacement")
                             }
                         }
-                        R.id.listViewAlergias -> {
+                        R.id.alergias -> {
                             supportFragmentManager.commit {
-                                replace<AlergiasFragment>(R.id.fragment_conteiner_usuario)
+                                replace<alergias_fragment>(R.id.fragment_conteiner_usuario)
                                 setReorderingAllowed(true)
                                 addToBackStack("replacement")
                             }
-                            return@OnNavigationItemSelectedListener true
                         }
-                        R.id.listViewNinos -> {
-                            // Reemplazar el fragmento con la gestión de niños
+                        R.id.acudientes -> {
+                            // Lógica para abrir el módulo de Acudientes
                             supportFragmentManager.commit {
-                                replace<NinosFragment>(R.id.fragment_conteiner_usuario)
+                                replace<AcudienteFragment>(R.id.fragment_conteiner_usuario)
                                 setReorderingAllowed(true)
                                 addToBackStack("replacement")
                             }
-                            return@OnNavigationItemSelectedListener true
                         }
-
                         R.id.creditos -> {
                             // Reemplazar el fragmento con el menú principal
                             supportFragmentManager.commit {

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Editar Alergia"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seleccionar Niño:"/>
+
+    <Spinner
+        android:id="@+id/spinnerNinos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seleccionar Ingrediente:"/>
+
+    <Spinner
+        android:id="@+id/spinnerIngredientes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Observaciones:"/>
+
+    <EditText
+        android:id="@+id/edtObservaciones"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="top|start"
+        android:inputType="textMultiLine"
+        android:hint="Ingrese observaciones"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Actualizar Alergia"
+        android:onClick="actualizar"/>
+
+</LinearLayout>

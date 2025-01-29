@@ -10,15 +10,15 @@ import android.widget.TextView
 class AdapterAlergias(
     context: Context,
     private val alergiasList: List<Alergias>
-) : ArrayAdapter<Alergias>(context, R.layout.list_item_alergias, alergiasList) {
+) : ArrayAdapter<Alergias>(context, R.layout.list_alergias_item, alergiasList) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view = convertView ?: LayoutInflater.from(context)
-            .inflate(R.layout.list_item_alergias, parent, false)
+            .inflate(R.layout.list_alergias_item, parent, false)
 
-        val tvNoMatricula = view.findViewById<TextView>(R.id.tvNoMatricula)
-        val tvIngredienteId = view.findViewById<TextView>(R.id.tvIngredienteId)
-        val tvObservaciones = view.findViewById<TextView>(R.id.tvObservaciones)
+        val tvNoMatricula = view.findViewById<TextView>(R.id.txtNoMatricula)
+        val tvIngredienteId = view.findViewById<TextView>(R.id.txtIngrediente)
+        val tvObservaciones = view.findViewById<TextView>(R.id.txtObservaciones)
 
         val alergia = alergiasList[position]
 

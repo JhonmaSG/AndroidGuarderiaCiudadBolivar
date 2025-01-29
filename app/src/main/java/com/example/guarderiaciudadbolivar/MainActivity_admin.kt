@@ -70,13 +70,12 @@ class MainActivity_admin : AppCompatActivity() {
                 R.id.inscripciones -> {
                     // Reemplazar el fragmento con el menú de inscripciones
                     supportFragmentManager.commit {
-                        replace<menu_inscripciones_fragment>(R.id.fragment_conteiner_admin)
+                        replace<NinoFragment>(R.id.fragment_conteiner_admin)
                         setReorderingAllowed(true)
                         addToBackStack("replacement")
                     }
                     return@OnNavigationItemSelectedListener true
                 }
-
                 R.id.pagos -> {
                     // Reemplazar el fragmento con el fragmento de pagos
                     supportFragmentManager.commit {
@@ -134,6 +133,7 @@ class MainActivity_admin : AppCompatActivity() {
                                 addToBackStack("replacement")
                             }
                         }
+
                         R.id.creditos -> {
                             // Reemplazar el fragmento con el menú principal
                             supportFragmentManager.commit {

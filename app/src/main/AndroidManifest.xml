@@ -27,9 +27,7 @@
         <activity
             android:name=".list_menu_comidas"
             android:exported="false" />
-        <activity
-            android:name=".ActualizarAlergiaActivity"
-            android:exported="false" />
+
         <activity
             android:name=".AgregarIngredientes"
             android:exported="false" />
@@ -87,15 +85,27 @@
         <activity
             android:name=".CreditosActivity"
             android:exported="false" />
-        <activity
-            android:name=".InscripcionChildrenActivity"
-            android:exported="false" />
+
         <activity
             android:name=".MainActivity_admin"
             android:exported="false" />
         <activity
             android:name=".MainActivity_usuario"
             android:exported="false" />
+        <activity android:name=".NinoFragment" android:exported="false"
+            tools:ignore="Instantiatable" />
+        <activity android:name=".AgregarNino" android:exported="false" />
+        <activity android:name=".EditarNino" android:exported="false" />
+        <activity android:name=".DetallesNino" android:exported="false" />
+
+        <!-- Agregar actividades de gestión de acudientes -->
+
+        <activity android:name=".AgregarAcudiente" android:exported="false" />
+        <activity android:name=".EditarAcudiente" android:exported="false" />
+        <activity android:name=".DetallesAcudiente" android:exported="false" />
+        <activity android:name=".AgregarAlergias" android:exported="false" />
+        <activity android:name=".EditarAlergias" android:exported="false" />
+        <activity android:name=".DetallesAlergias" android:exported="false" />
     </application>
 
 </manifest>
