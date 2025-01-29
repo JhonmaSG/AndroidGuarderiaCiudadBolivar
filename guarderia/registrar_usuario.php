@@ -28,8 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     // Insertar los datos en la base de datos
-    $query = "INSERT INTO usuarios (nombreUsuario, contrasena, rolId, dni, nombres, apellidos, pregunta, respuesta) 
-              VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $query = "INSERT INTO usuarios (nombreUsuario, contrasena, rolId, dni, nombres, apellidos, pregunta, respuesta, ultimoCambio) 
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, CURDATE())";
     
     // Preparar la consulta
     if ($stmt = mysqli_prepare($link, $query)) {
